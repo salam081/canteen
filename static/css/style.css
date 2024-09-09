@@ -1,0 +1,1030 @@
+/*** Beginning of alerts ***/
+.alert-success{
+  background-color: green;
+  color: white;
+}
+.alert-error{
+  background-color: red;
+  color: white !important;
+}
+/*** End of alerts ***/
+
+
+/***** Start of Calendar CSS *****/
+.activee-date{
+    background-color:#355E3B;
+    color:#fff !important;
+    cursor: pointer
+  }
+  
+  .active-date{
+    cursor: pointer !important;
+  }
+  
+  .disabled-date { 
+    pointer-events: none; 
+    cursor: not-allowed !important;
+    text-decoration: line-through solid red; 
+  }
+  
+  .buttons-div{
+    padding: 10px
+  }
+ 
+.ftco-section {
+    padding: 7em 0; }
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto; }
+        @media (min-width: 576px) {
+          .container {
+            max-width: 540px; } }
+        @media (min-width: 768px) {
+          .container {
+            max-width: 720px; } }
+        @media (min-width: 992px) {
+          .container {
+            max-width: 960px; } }
+        @media (min-width: 1200px) {
+          .container {
+            max-width: 1140px; } }
+            .row {
+                width: 100%;
+            }
+                .calendar-container {
+                    margin: 0 auto;
+                    height: 100%;
+                    max-width: 100%;
+                    background: #fff;
+                    font: 13px Helvetica, Arial, san-serif;
+                    display: inline-block;
+                   }
+                    @media (max-width: 991.98px) {
+                      .calendar-container {
+                        padding: 0; } }
+                    @media (max-width: 767.98px) {
+                      .calendar-container {
+                        padding: 0;
+                        width: 100%; } }
+                  
+                  .calendar-container:after {
+                    clear: both; }
+                    .calendar {
+                        width: 100%;
+                        padding: 0; }
+                        .year-header {
+                            background: #fff;
+                            height: 40px;
+                            text-align: center;
+                            position: relative;
+                            color: #fff;
+                            border-top-left-radius: 3px;
+                            margin-top: 20px; }
+                          
+                          .year-header span {
+                            display: inline-block;
+                            font-size: 20px;
+                            line-height: 40px;
+                            color: #000; }
+                            .left-button, .right-button {
+                                cursor: pointer;
+                                width: 28px;
+                                text-align: center;
+                                position: absolute;
+                                color: #cccccc !important;
+                                -webkit-transition: 0.3s;
+                                -o-transition: 0.3s;
+                                transition: 0.3s;
+                                font-size: 14px !important; }
+                                @media (prefers-reduced-motion: reduce) {
+                                  .left-button, .right-button {
+                                    -webkit-transition: none;
+                                    -o-transition: none;
+                                    transition: none; } }
+                                .left-button:hover, .right-button:hover {
+                                  color: #7e0cf5 !important; }
+                              
+                              .left-button {
+                                left: 0; }
+                              
+                              .right-button {
+                                right: 0;
+                                top: 0; }
+                                .days-table, .dates-table, .months-table {
+                                    border-collapse: separate;
+                                    text-align: center;
+                                 }
+                                  
+                                  .day {
+                                    height: 26px;
+                                    width: 26px;
+                                    padding: 0 10px;
+                                    line-height: 26px;
+                                    border: 2px solid transparent;
+                                    text-transform: uppercase;
+                                    font-size: 10px;
+                                    color: #000; }
+                                  
+                                  .month {
+                                    cursor: default;
+                                    height: 26px;
+                                    width: 26px;
+                                    padding: 0 2px;
+                                    padding-top: 10px;
+                                    line-height: 26px;
+                                    text-transform: uppercase;
+                                    font-size: 11px;
+                                    color: #cccccc;
+                                    -webkit-transition: all 250ms;
+                                    -o-transition: all 250ms;
+                                    transition: all 250ms; }
+                                    @media (max-width: 991.98px) {
+                                      .month {
+                                        font-size: 8px; } }
+                                    @media (max-width: 767.98px) {
+                                      .month {
+                                        font-size: 10.5px; } }
+                                  
+                                  .active-month {
+                                    font-weight: 700;
+                                    color: #000; }
+                                  
+                                  .month:hover {
+                                    color: #cd4dcc; }
+                                  
+                                  /*  Dates table */
+                                  .table-date {
+                                    cursor: default;
+                                    color: #2b2b2b;
+                                    height: 26px;
+                                    width: 26px;
+                                    font-size: 15px;
+                                    padding: 10px;
+                                    line-height: 26px;
+                                    text-align: center;
+                                    border-radius: 50%;
+                                    border: 2px solid transparent;
+                                    -webkit-transition: all 250ms;
+                                    -o-transition: all 250ms;
+                                    transition: all 250ms;
+                                }
+                                  
+                                  .table-date:not(.nil):hover {
+                                    border-color: #cd4dcc; }
+                                  
+                                  .event-date {
+                                    border-color: #7e0cf5;
+                                    background: #7e0cf5;
+                                    color: #fff; }
+                                    .event-date:after {
+                                      position: absolute;
+                                      top: 0;
+                                      left: 0;
+                                      width: 10px;
+                                      height: 10px;
+                                      border-radius: 50%;
+                                      content: '';
+                                      background: #28a745; }
+                                  
+                                  .active-date {
+                                    background: #cd4dcc;
+                                    color: #fff; }
+                                  
+                                  .event-date.active-date {
+                                    background: #7e0cf5; }
+                                    table {
+                                        border-collapse: collapse; }
+                                        .table {
+                                            width: 100%;
+                                            margin-bottom: 1rem;
+                                            color: #212529; }
+                                            .table th,
+                                            .table td {
+                                              padding: 0.75rem;
+                                              vertical-align: top;
+                                              border-top: 1px solid #dee2e6; }
+                                            .table thead th {
+                                              vertical-align: bottom;
+                                              border-bottom: 2px solid #dee2e6; }
+                                            .table tbody + tbody {
+                                              border-top: 2px solid #dee2e6; }
+                                          
+                                          .table-sm th,
+                                          .table-sm td {
+                                            padding: 0.3rem; }
+                                          
+                                          .table-bordered {
+                                            border: 1px solid #dee2e6; }
+                                            .table-bordered th,
+                                            .table-bordered td {
+                                              border: 1px solid #dee2e6; }
+                                            .table-bordered thead th,
+                                            .table-bordered thead td {
+                                              border-bottom-width: 2px; }
+                                          
+                                          .table-borderless th,
+                                          .table-borderless td,
+                                          .table-borderless thead th,
+                                          .table-borderless tbody + tbody {
+                                            border: 0; }
+                                          
+                                          .table-striped tbody tr:nth-of-type(odd) {
+                                            background-color: rgba(0, 0, 0, 0.05); }
+                                          
+                                          .table-hover tbody tr:hover {
+                                            color: #212529;
+                                            background-color: rgba(0, 0, 0, 0.075); }
+                                          
+                                          .table-primary,
+                                          .table-primary > th,
+                                          .table-primary > td {
+                                            background-color: #b8daff; }
+                                          
+                                          .table-primary th,
+                                          .table-primary td,
+                                          .table-primary thead th,
+                                          .table-primary tbody + tbody {
+                                            border-color: #7abaff; }
+                                          
+                                          .table-hover .table-primary:hover {
+                                            background-color: #9fcdff; }
+                                            .table-hover .table-primary:hover > td,
+                                            .table-hover .table-primary:hover > th {
+                                              background-color: #9fcdff; }
+                                          
+                                          .table-secondary,
+                                          .table-secondary > th,
+                                          .table-secondary > td {
+                                            background-color: #d6d8db; }
+                                          
+                                          .table-secondary th,
+                                          .table-secondary td,
+                                          .table-secondary thead th,
+                                          .table-secondary tbody + tbody {
+                                            border-color: #b3b7bb; }
+                                          
+                                          .table-hover .table-secondary:hover {
+                                            background-color: #c8cbcf; }
+                                            .table-hover .table-secondary:hover > td,
+                                            .table-hover .table-secondary:hover > th {
+                                              background-color: #c8cbcf; }
+                                          
+                                          .table-success,
+                                          .table-success > th,
+                                          .table-success > td {
+                                            background-color: #c3e6cb; }
+                                          
+                                          .table-success th,
+                                          .table-success td,
+                                          .table-success thead th,
+                                          .table-success tbody + tbody {
+                                            border-color: #8fd19e; }
+                                          
+                                          .table-hover .table-success:hover {
+                                            background-color: #b1dfbb; }
+                                            .table-hover .table-success:hover > td,
+                                            .table-hover .table-success:hover > th {
+                                              background-color: #b1dfbb; }
+                                          
+                                          .table-info,
+                                          .table-info > th,
+                                          .table-info > td {
+                                            background-color: #bee5eb; }
+                                          
+                                          .table-info th,
+                                          .table-info td,
+                                          .table-info thead th,
+                                          .table-info tbody + tbody {
+                                            border-color: #86cfda; }
+                                          
+                                          .table-hover .table-info:hover {
+                                            background-color: #abdde5; }
+                                            .table-hover .table-info:hover > td,
+                                            .table-hover .table-info:hover > th {
+                                              background-color: #abdde5; }
+                                          
+                                          .table-warning,
+                                          .table-warning > th,
+                                          .table-warning > td {
+                                            background-color: #ffeeba; }
+                                          
+                                          .table-warning th,
+                                          .table-warning td,
+                                          .table-warning thead th,
+                                          .table-warning tbody + tbody {
+                                            border-color: #ffdf7e; }
+                                          
+                                          .table-hover .table-warning:hover {
+                                            background-color: #ffe8a1; }
+                                            .table-hover .table-warning:hover > td,
+                                            .table-hover .table-warning:hover > th {
+                                              background-color: #ffe8a1; }
+                                          
+                                          .table-danger,
+                                          .table-danger > th,
+                                          .table-danger > td {
+                                            background-color: #f5c6cb; }
+                                          
+                                          .table-danger th,
+                                          .table-danger td,
+                                          .table-danger thead th,
+                                          .table-danger tbody + tbody {
+                                            border-color: #ed969e; }
+                                          
+                                          .table-hover .table-danger:hover {
+                                            background-color: #f1b0b7; }
+                                            .table-hover .table-danger:hover > td,
+                                            .table-hover .table-danger:hover > th {
+                                              background-color: #f1b0b7; }
+                                          
+                                          .table-light,
+                                          .table-light > th,
+                                          .table-light > td {
+                                            background-color: #fdfdfe; }
+                                          
+                                          .table-light th,
+                                          .table-light td,
+                                          .table-light thead th,
+                                          .table-light tbody + tbody {
+                                            border-color: #fbfcfc; }
+                                          
+                                          .table-hover .table-light:hover {
+                                            background-color: #ececf6; }
+                                            .table-hover .table-light:hover > td,
+                                            .table-hover .table-light:hover > th {
+                                              background-color: #ececf6; }
+                                          
+                                          .table-dark,
+                                          .table-dark > th,
+                                          .table-dark > td {
+                                            background-color: #c6c8ca; }
+                                          
+                                          .table-dark th,
+                                          .table-dark td,
+                                          .table-dark thead th,
+                                          .table-dark tbody + tbody {
+                                            border-color: #95999c; }
+                                          
+                                          .table-hover .table-dark:hover {
+                                            background-color: #b9bbbe; }
+                                            .table-hover .table-dark:hover > td,
+                                            .table-hover .table-dark:hover > th {
+                                              background-color: #b9bbbe; }
+                                          
+                                          .table-active,
+                                          .table-active > th,
+                                          .table-active > td {
+                                            background-color: rgba(0, 0, 0, 0.075); }
+                                          
+                                          .table-hover .table-active:hover {
+                                            background-color: rgba(0, 0, 0, 0.075); }
+                                            .table-hover .table-active:hover > td,
+                                            .table-hover .table-active:hover > th {
+                                              background-color: rgba(0, 0, 0, 0.075); }
+                                          
+                                          .table .thead-dark th {
+                                            color: #fff;
+                                            background-color: #343a40;
+                                            border-color: #454d55; }
+                                          
+                                          .table .thead-light th {
+                                            color: #495057;
+                                            background-color: #e9ecef;
+                                            border-color: #dee2e6; }
+                                          
+                                          .table-dark {
+                                            color: #fff;
+                                            background-color: #343a40; }
+                                            .table-dark th,
+                                            .table-dark td,
+                                            .table-dark thead th {
+                                              border-color: #454d55; }
+                                            .table-dark.table-bordered {
+                                              border: 0; }
+                                            .table-dark.table-striped tbody tr:nth-of-type(odd) {
+                                              background-color: rgba(255, 255, 255, 0.05); }
+                                            .table-dark.table-hover tbody tr:hover {
+                                              color: #fff;
+                                              background-color: rgba(255, 255, 255, 0.075); }
+                                          
+                                          @media (max-width: 575.98px) {
+                                            .table-responsive-sm {
+                                              display: block;
+                                              width: 100%;
+                                              overflow-x: auto;
+                                              -webkit-overflow-scrolling: touch; }
+                                              .table-responsive-sm > .table-bordered {
+                                                border: 0; } }
+                                          
+                                          @media (max-width: 767.98px) {
+                                            .table-responsive-md {
+                                              display: block;
+                                              width: 100%;
+                                              overflow-x: auto;
+                                              -webkit-overflow-scrolling: touch; }
+                                              .table-responsive-md > .table-bordered {
+                                                border: 0; } }
+                                          
+                                          @media (max-width: 991.98px) {
+                                            .table-responsive-lg {
+                                              display: block;
+                                              width: 100%;
+                                              overflow-x: auto;
+                                              -webkit-overflow-scrolling: touch; }
+                                              .table-responsive-lg > .table-bordered {
+                                                border: 0; } }
+                                          
+                                          @media (max-width: 1199.98px) {
+                                            .table-responsive-xl {
+                                              display: block;
+                                              width: 100%;
+                                              overflow-x: auto;
+                                              -webkit-overflow-scrolling: touch; }
+                                              .table-responsive-xl > .table-bordered {
+                                                border: 0; } }
+                                          
+                                          .table-responsive {
+                                            display: block;
+                                            width: 100%;
+                                            overflow-x: auto;
+                                            -webkit-overflow-scrolling: touch; }
+                                            .table-responsive > .table-bordered {
+                                              border: 0; }
+                                              .month {
+                                                cursor: default;
+                                                height: 26px;
+                                                width: 26px;
+                                                padding: 0 2px;
+                                                padding-top: 10px;
+                                                line-height: 26px;
+                                                text-transform: uppercase;
+                                                font-size: 11px;
+                                                color: #cccccc;
+                                                -webkit-transition: all 250ms;
+                                                -o-transition: all 250ms;
+                                                transition: all 250ms; }
+                                                @media (max-width: 991.98px) {
+                                                  .month {
+                                                    font-size: 8px; } }
+                                                @media (max-width: 767.98px) {
+                                                  .month {
+                                                    font-size: 10.5px; } }
+                                              
+                                              .active-month {
+                                                font-weight: 700;
+                                                color: #000; }
+                                              
+                                              .month:hover {
+                                                color: #cd4dcc; }  
+                                                .days-table, .dates-table, .months-table {
+                                                    border-collapse: separate;
+                                                    text-align: center; }
+                                                    input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  -webkit-appearance: listbox; }  
+    .buttons-div{
+        padding: 10px
+      }
+      #clear-button {
+        background: #cd4dcc;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+       }
+      
+      #confirm-button {
+        background-color: green !important;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+
+       }
+      
+      #clear-button:hover, #confirm-button:hover, #cancel-button:hover {
+        -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        transform: scale(1.03); }
+      
+      #clear-button:active, #confirm-button:active, #cancel-button:active {
+        -webkit-transform: translateY(3px) scale(0.97);
+        -ms-transform: translateY(3px) scale(0.97);
+        transform: translateY(3px) scale(0.97); }                                                                                                                                                   
+/***** End of Calendar CSS *****/
+
+/********** Template CSS **********/
+:root {
+    --primary: #FEA116;
+    --light: #F1F8FF;
+    --dark: #0F172B;
+}
+
+.ff-secondary {
+    font-family: 'Pacifico', cursive;
+}
+
+.fw-medium {
+    font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+    font-weight: 700 !important;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*** Button ***/
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: .5s;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 2px;
+}
+
+
+/*** Navbar ***/
+.navbar-dark .navbar-nav .nav-link {
+    position: relative;
+    margin-left: 25px;
+    padding: 35px 0;
+    font-size: 15px;
+    color: var(--light) !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    outline: none;
+    transition: .5s;
+}
+
+.sticky-top.navbar-dark .navbar-nav .nav-link {
+    padding: 20px 0;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+}
+
+.nav-item.active .nav-link,
+.nav-item .nav-link.active {
+  color: var(--primary) !important;
+}
+
+
+.navbar-dark .navbar-brand img {
+    max-height: 60px;
+    transition: .5s;
+}
+
+.sticky-top.navbar-dark .navbar-brand img {
+    max-height: 45px;
+}
+
+@media (max-width: 991.98px) {
+    .sticky-top.navbar-dark {
+        position: relative;
+    }
+
+    .navbar-dark .navbar-collapse {
+        margin-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .navbar-dark .navbar-nav .nav-link,
+    .sticky-top.navbar-dark .navbar-nav .nav-link {
+        padding: 10px 0;
+        margin-left: 0;
+    }
+
+    .navbar-dark .navbar-brand img {
+        max-height: 45px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-dark {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: transparent !important;
+    }
+    
+    .sticky-top.navbar-dark {
+        position: fixed;
+        background: var(--dark) !important;
+    }
+}
+
+
+/*** Hero Header ***/
+.hero-header {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/bg-hero.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-header img {
+    animation: imgRotate 50s linear infinite;
+}
+
+@keyframes imgRotate { 
+    100% { 
+        transform: rotate(360deg); 
+    } 
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, .5);
+}
+
+
+/*** Section Title ***/
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::before {
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 2px;
+    top: 50%;
+    left: -55px;
+    margin-top: -1px;
+    background: var(--primary);
+}
+
+.section-title::after {
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 2px;
+    top: 50%;
+    right: -55px;
+    margin-top: -1px;
+    background: var(--primary);
+}
+
+.section-title.text-start::before,
+.section-title.text-end::after {
+    display: none;
+}
+
+
+/*** Service ***/
+.service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+}
+
+.service-item:hover {
+    background: var(--primary);
+}
+
+.service-item * {
+    transition: .5s;
+}
+
+.service-item:hover * {
+    color: var(--light) !important;
+}
+
+
+/*** Food Menu ***/
+.nav-pills .nav-item .active {
+    border-bottom: 2px solid var(--primary);
+}
+
+
+/*** Youtube Video ***/
+.video {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+    background: linear-gradient(rgba(15, 23, 43, .1), rgba(15, 23, 43, .1)), url(../img/video.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.video .btn-play {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-sizing: content-box;
+    display: block;
+    width: 32px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    padding: 18px 20px 18px 28px;
+}
+
+.video .btn-play:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: pulse-border 1500ms ease-out infinite;
+}
+
+.video .btn-play:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--primary);
+    border-radius: 50%;
+    transition: all 200ms;
+}
+
+.video .btn-play img {
+    position: relative;
+    z-index: 3;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.video .btn-play span {
+    display: block;
+    position: relative;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-left: 32px solid var(--dark);
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+        opacity: 0;
+    }
+}
+
+#videoModal {
+    z-index: 99999;
+}
+.btn-close{
+  background-color: var(--primary);
+}
+#videoModal .modal-dialog {
+    /* position: relative; */
+    max-width: 800px;
+    margin: 60px auto 0 auto;
+}
+
+#videoModal .modal-body {
+    /* position: relative; */
+    padding: 0px;
+
+}
+
+.calendar-container1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-container2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px
+}
+
+.modal-body{
+    width: 100%;
+    /* display: flex;  */
+    /* background-color: #fff; */
+}
+.modal-open{
+    padding: 0;
+}
+
+#videoModal .close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0px;
+    top: -30px;
+    z-index: 999;
+    font-size: 30px;
+    font-weight: normal;
+    color: #FFFFFF;
+    background: #000000;
+    opacity: 1;
+}
+
+
+/*** Team ***/
+.team-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    height: calc(100% - 38px);
+    transition: .5s;
+}
+
+.team-item img {
+    transition: .5s;
+}
+
+.team-item:hover img {
+    transform: scale(1.1);
+}
+
+.team-item:hover {
+    height: 100%;
+}
+
+.team-item .btn {
+    border-radius: 38px 38px 0 0;
+}
+
+
+/*** Testimonial ***/
+.testimonial-carousel .owl-item .testimonial-item,
+.testimonial-carousel .owl-item.center .testimonial-item * {
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item * {
+    color: var(--light) !important;
+}
+
+.testimonial-carousel .owl-dots {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #CCCCCC;
+    border-radius: 15px;
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-dot.active {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+
+/*** Footer ***/
+.footer .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    border: 1px solid #FFFFFF;
+    border-radius: 35px;
+    transition: .3s;
+}
+
+.footer .btn.btn-social:hover {
+    color: var(--primary);
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+    color: var(--light);
+}
+
+.footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}

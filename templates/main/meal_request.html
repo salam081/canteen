@@ -1,0 +1,387 @@
+{% extends 'base/base.html' %} {% block content %}
+<style>
+  .strikethrough {
+    text-decoration: line-through;
+  }
+  .non-clickable {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+</style>
+<div class="container-xxl py-2">
+  <div class="text-center mb-2 wow fadeInUp" data-wow-delay="0.1s">
+    <h5 class="section-title ff-secondary text-center text-primary fw-normal">
+      Food Menu
+    </h5>
+  </div>
+  {% if not on_call %}
+  <h3 class="text-center"> You Are Not on Call Today Contact Your Admin in your Unit </h3>
+
+     {% else %}
+     <div class="row g-5">
+      <div
+        class="card col-md-10 offset-md-1 shadow wow fadeInUp"
+        data-wow-delay="0.1s"
+      >
+        <div class="card-body">
+          <div class="row g-4">
+            <!-- Menu Section -->
+            <div class="col-lg-8 d-flex flex-column">
+              <div
+                class="tab-class text-center wow fadeInUp"
+                data-wow-delay="0.1s"
+              >
+                <ul
+                  class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5"
+                >
+                  <li class="nav-item">
+                    <a
+                      class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active"
+                      data-bs-toggle="pill"
+                      href="#tab-1"
+                    >
+                      <i class="fa fa-utensils fa-2x text-primary"></i>
+                      <div class="ps-3">
+                        <small class="text-body">Our</small>
+                        <h6 class="mt-n1 mb-0">Menu</h6>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="d-flex align-items-center text-start mx-3 pb-3"
+                      data-bs-toggle="pill"
+                      href="#tab-2"
+                    >
+                      <i class="fa fa-hamburger fa-2x text-primary"></i>
+                      <div class="ps-3">
+                        <small class="text-body">Special</small>
+                        <h6 class="mt-n1 mb-0">Swallow</h6>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="d-flex align-items-center text-start mx-3 me-0 pb-3"
+                      data-bs-toggle="pill"
+                      href="#tab-3"
+                    >
+                      <i class="fa fa-coffee fa-2x text-primary"></i>
+                      <div class="ps-3">
+                        <small class="text-body">Lovely</small>
+                        <h6 class="mt-n1 mb-0">Drinks</h6>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <!-- All Meals -->
+                  <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="menu">
+                      <!-- Inside your existing meal display loops -->
+                      {% for meal in meals %}
+                      <div class="col-10">
+                        <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                          {%if meal.available %}
+                          style="cursor: pointer"
+                          data-id="{{ meal.id }}"
+                          data-title="{{ meal.title }}"
+                          data-price="{{ meal.price }}"
+                          data-category="{{ meal.category }}"
+                          data-url="{{ meal.image.url }}"
+                          {% endif %}>
+                          <img class="flex-shrink-0 img-fluid rounded"
+                            src="{{ meal.image.url }}"
+                            alt=""
+                            style="width: 80px"
+                          />
+                          <div class="w-100 d-flex flex-column text-start ps-4">
+                            <h5
+                              class="d-flex justify-content-between border-bottom pb-2"
+                            >
+                              <span
+                                class="{% if not meal.available %}strikethrough{% endif %}"
+                                >{{ meal.title }}</span
+                              >
+                              <span
+                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
+                                >&#8358;{{ meal.price }}</span
+                              >
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+  
+                  <!-- Swallow Meals -->
+                  <div id="tab-2" class="tab-pane fade show p-0">
+                    <div class="swallow-div row">
+                      {% for meal in swallow_meal %}
+  
+                      <div class="col-10">
+                        <div
+                          class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                          style="cursor: pointer"
+                          data-id="{{ meal.id }}"
+                          data-title="{{ meal.title }}"
+                          data-price="{{ meal.price }}"
+                          data-category="{{ meal.category }}"
+                          data-url="{{ meal.image.url }}"
+                        >
+                          <img
+                            class="flex-shrink-0 img-fluid rounded"
+                            src="{{ meal.image.url }}"
+                            alt=""
+                            style="width: 80px"
+                          />
+                          <div class="w-100 d-flex flex-column text-start ps-4">
+                            <h5
+                              class="d-flex justify-content-between border-bottom pb-2"
+                            >
+                              <span
+                                class="{% if not meal.available %}strikethrough{% endif %}"
+                                >{{ meal.title }}</span
+                              >
+                              <span
+                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
+                                >&#8358;{{ meal.price }}</span
+                              >
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+  
+                      {% endfor %}
+                    </div>
+                  </div>
+  
+                  <!-- Drink Meals -->
+                  <div id="tab-3" class="tab-pane fade show p-0">
+                    <div class="drink-div row">
+                      {% for meal in drink_meal %}
+  
+                      <div class="col-10">
+                        <div
+                          class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                          style="cursor: pointer"
+                          data-id="{{ meal.id }}"
+                          data-title="{{ meal.title }}"
+                          data-price="{{ meal.price }}"
+                          data-category="{{ meal.category }}"
+                          data-url="{{ meal.image.url }}"
+                        >
+                          <img
+                            class="flex-shrink-0 img-fluid rounded"
+                            src="{{ meal.image.url }}"
+                            alt=""
+                            style="width: 80px"
+                          />
+                          <div class="w-100 d-flex flex-column text-start ps-4">
+                            <h5
+                              class="d-flex justify-content-between border-bottom pb-2"
+                            >
+                              <span
+                                class="{% if not meal.available %}strikethrough{% endif %}"
+                                >{{ meal.title }}</span
+                              >
+                              <span
+                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
+                                >&#8358;{{ meal.price }}</span
+                              >
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+  
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Meal Order Section -->
+            <div class="col-lg-4 d-flex flex-column">
+              <div
+                class="meal-order wow fadeInUp border border-warning rounded-top p-2"
+                style="height: 25rem; position: relative"
+                data-wow-delay="0.1s"
+              >
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                  <h5
+                    class="section-title ff-secondary text-center text-primary fw-normal"
+                    style="
+                      position: absolute;
+                      top: 0;
+                      left: 50%;
+                      transform: translateX(-50%);
+                    "
+                  >
+                    Your Order
+                  </h5>
+                  <br />
+                  <div id="order-list">
+                    <div style="position: absolute; top: 30%; left: 23%">
+                      <img src="/static/img/chef.jpeg" alt="chef image" />
+                      <p><i>Start placing your order...</i></p>
+                    </div>
+                  </div>
+  
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: 0;
+                      left: 50%;
+                      transform: translateX(-50%);
+                    "
+                    class="text-center"
+                  >
+                    <div
+                      id="totalDiv"
+                      class="text-primary fw-normal border-top"
+                    ></div>
+  
+                    <!-- Add hidden form to submit order -->
+                    <form method="post">
+                      {% csrf_token %}
+                      <div id="meal-form"></div>
+                      <button
+                        type="submit"
+                        class="btn btn-primary py-1 px-2 mb-1 rounded-pill"
+                      >
+                        PLACE ORDER
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  {% endif %}
+  
+</div>
+<script>
+  let OrderArray = [];
+  let mealArray = [
+    // Meal data here
+  ];
+
+  let priceLimit = 2000; // Set your price limit here
+
+  // Render meals in respective categories
+  let menuDiv = document.querySelector(".menu");
+  let swallowDiv = document.querySelector(".swallow-div");
+  let drinkDiv = document.querySelector(".drink-div");
+
+  mealArray.forEach((meal) => {
+    let mealDiv = `<div class="col-10">
+    <div class="meal d-flex align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
+      <img class="flex-shrink-0 img-fluid rounded" src="${meal.url}" alt="" style="width: 80px"/>
+      <div class="w-100 d-flex flex-column text-start ps-4">
+        <h5 class="d-flex justify-content-between border-bottom pb-2">
+          <span>${meal.title}</span>
+          <span class="text-primary">&#8358;${meal.price}</span>
+        </h5>
+      </div>
+    </div>
+  </div>`;
+
+    if (meal.category === "swallow") {
+      swallowDiv.innerHTML += mealDiv;
+    } else if (meal.category === "drink") {
+      drinkDiv.innerHTML += mealDiv;
+    } else {
+      menuDiv.innerHTML += mealDiv;
+    }
+  });
+
+  // Select meals
+  document.querySelectorAll(".meal").forEach((mealElement) => {
+    mealElement.addEventListener("click", function (e) {
+      let clickedMeal = e.currentTarget;
+
+      let mealDetails = {
+        id: clickedMeal.getAttribute("data-id"),
+        title: clickedMeal.getAttribute("data-title"),
+        price: parseFloat(clickedMeal.getAttribute("data-price")),
+        category: clickedMeal.getAttribute("data-category"),
+        url: clickedMeal.getAttribute("data-url"),
+      };
+
+      let currentTotal = OrderArray.reduce((acc, meal) => acc + meal.price, 0);
+
+      if (currentTotal + mealDetails.price <= priceLimit) {
+        OrderArray.push(mealDetails);
+        console.log(OrderArray);
+        UpdateOrderList();
+        UpdateTotalPrice();
+      } else {
+        alert(`Adding this meal exceeds the price limit of ₦${priceLimit}.`);
+      }
+    });
+  });
+
+  // Update Order List
+  function UpdateOrderList() {
+    let orderListDiv = document.getElementById("order-list");
+    orderListDiv.innerHTML = "";
+    if (OrderArray && OrderArray.length > 0) {
+      OrderArray.forEach((meal, index) => {
+        orderListDiv.innerHTML += `<div class="order-item d-flex justify-content-between align-items-center p-2">
+     <span>
+      <span>${index + 1}.</span>
+      <b> ${meal.title}</b>
+      </span>
+      <span>
+      <span class="text-primary">&#8358;${meal.price.toFixed(2)}</span>
+       <span class="items-button" style="cursor:pointer" data-index="${index}">&nbsp ❌</span>
+    </span>
+       </div>`;
+      });
+      document.querySelectorAll(".items-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const index = this.getAttribute("data-index");
+          let confirmRemoval = window.confirm(
+            `Are you sure you want to remove ${OrderArray[index].title} from your order?`
+          );
+
+          if (confirmRemoval) {
+            // Remove the item if confirmed
+            OrderArray.splice(index, 1);
+            UpdateTotalPrice();
+            UpdateOrderList();
+            console.log(OrderArray);
+          }
+        });
+      });
+      // Update hidden form
+      let mealForm = document.getElementById("meal-form");
+      mealForm.innerHTML = "";
+      OrderArray.forEach((meal) => {
+        if (meal.id) {
+          mealForm.innerHTML += `<input type="hidden" name="meal_id" value="${meal.id}" />`;
+        }
+      });
+    } else {
+      orderListDiv.innerHTML = `<div style="position: absolute; top: 30%; left: 23%">
+          <img src="/static/img/chef.jpeg" alt="chef image" />
+          <p><i>Start placing your order...</i></p>
+        </div>`;
+    }
+  }
+
+  // Update Total Price
+  function UpdateTotalPrice() {
+    let totalDiv = document.getElementById("totalDiv");
+    let total = OrderArray.reduce((acc, meal) => acc + meal.price, 0);
+    totalDiv.innerHTML = `<h5 class="text-primary">Total: &#8358;${total.toFixed(
+      2
+    )}</h5>`;
+  }
+</script>
+{% endblock %}

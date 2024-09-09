@@ -1,0 +1,33 @@
+ <!-- search Modal starts here -->
+<div class="modal fade" id="search" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header text-light">
+          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="" data-wow-delay="0.1s">
+                    <div class="bg-dark">
+                    <div class="p-2 " data-wow-delay="0.2s">
+                     <h5 class="text-center ff-secondary text-start text-primary fw-normal">Enter Your Search</h5>
+                            <form method="GET" action="{% url 'search_user'%}">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text text-primary">
+                                                <i class="bi bi-zoom-in"></i>
+                                            </span>
+                                            <input type="text" name="q" class="form-control col-12" placeholder="Enter Your Search" aria-label="Username" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+  <!-- Search modal ends here -->

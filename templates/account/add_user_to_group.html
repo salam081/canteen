@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+
+<div class="container-xxl pt-2 pb-3">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h3 class="section-title ff-secondary text-center text-primary  font-monospace">Registered Users</h3>
+        </div>
+        <div class="row g-5">
+           <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">File No</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Sunday</td>
+                            <td>Olowofela</td>
+                            <td>2322</td>
+                            <td>SDcode</td>
+                            <td>CITTU</td>
+                            <td>Dev</td>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Action</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#meal">Reset Password</a>
+                                    <a href="team.html" class="dropdown-item">Assign Group</a>
+                                </div>
+                            </div>
+                          </tr>
+                        </tbody>
+                      </table>
+                 
+                </div>
+            </div> 
+
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
+

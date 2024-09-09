@@ -1,0 +1,41 @@
+<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header text-dark">
+          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-dark d-flex align-items-center">
+                        <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                            <h5 class="section-title ff-secondary text-start text-primary fw-normal justify-content-center">Canteen App</h5>
+                            <h3 class="text-white mb-4">Log In Info</h3>
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                            <label for="name">Username</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                            <label for="password" >Password</label>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12">
+                                        <button  class="btn btn-primary w-100 py-3" type="submit">Log In</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>

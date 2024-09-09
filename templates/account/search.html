@@ -1,0 +1,112 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+
+<!-- Table for search starts here -->
+<div class="container-xxl pt-2 pb-3">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h3 class="section-title ff-secondary text-center text-primary  font-monospace">Registered Users</h3>
+    </div>
+    <div class="row g-5">
+      <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
+        <div class="card-body table-responsive">
+          <table class="table table">
+            <thead>
+              <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">File No</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Department</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for user in users %}
+              <tr>
+
+                <td>{{forloop.counter}}</td>
+                <td>{{user.file_no}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.department}}</td>
+                <td>{{user.unit}}</td>
+                <td>
+
+                  <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="fas fa-pencil-alt"></i></a>
+                    <div class="dropdown-menu m-0">
+                      <a href="{% url 'reset_password' user.id %}" class="dropdown-item">Reset Password</a>
+                      <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#assign_group">Assign
+                        Group</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Assign User to Group starts here -->
+              <div class="modal fade" id="assign_group" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-dark">
+                    <div class="modal-header text-light">
+                      <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="bg-dark g-3">
+                          <div class="p-2 wow fadeInUp" data-wow-delay="0.2s">
+                            
+                            <h3 class="text-center ff-secondary text-start text-primary fw-normal mb-2">Assign Group</h3>
+                            <form method="POST" action="{% url 'add_user_to_group' user.id %}">
+                              {% csrf_token %}
+                              <div class="col-12">
+                                <div class="form-floating">
+                                  <select class="form-select" id="group" name="group">
+                                    {% for group in groups %}
+                                    <option value="{{ group.id }}">{{ group.title }}</option>
+
+                                    {% endfor %}
+                                  </select>
+                                  <label for="select1">Assign Group</label>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3 mt-3" type="submit">Log In</button>
+                              </div>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              {% endfor %}
+              <!-- Assign User to Group starts here -->
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!-- Search table ends here -->
+
+
+
+
+
+{% endblock content%}

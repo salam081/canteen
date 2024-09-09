@@ -1,0 +1,89 @@
+
+
+<!-- Profile modal starts here -->
+<div class="modal fade" id="profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header text-light">
+          <h3 class="text-primary text-center"> Biodata</h3>
+          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-dark d-flex align-items-center">
+                      <div class="table table-responsive">
+                        <table class="table table-bordered text-primary">
+                          <tr>
+                            <th width="30%">Username </th>
+                            <td width="2%"></td>
+                            <td>{{user.username}}</td>
+                          </tr>
+                          <tr>
+                            <th width="30%">First Name:</th>
+                            <td width="2%">:</td>
+                            <td>{{user.firstname}}</td>
+                          </tr>
+                          <tr>
+                            <th width="30%">Lastname</th>
+                            <td width="2%">:</td>
+                            <td>{{user.lastname}}</td>
+                          </tr>
+                          <tr>
+                            <th width="30%">Othername</th>
+                            <td width="2%">:</td>
+                            <td>{{user.othername}}</td>
+                          </tr>
+                          <tr>
+                            <th width="30%">File No</th>
+                            <td width="2%">:</td>
+                            <td>{{user.file_no}}</td>
+                          </tr>
+                          <tr>
+                            <th width="30%">Phone</th>
+                            <td width="2%">:</td>
+                            <td>{{user.phone_number}}</td>
+                          </tr>  
+                         <tr>
+                            <th width="30%">Department</th>
+                            <td width="2%">:</td>
+                            <td>{{user.department}}</td>
+                          </tr>  
+                          <tr>
+                            <th width="30%">Unit</th>
+                            <td width="2%">:</td>
+                            <td>{{user.unit}}</td>
+                          </tr>  
+                          <tr>
+                            <th width="30%">Sex</th>
+                            <td width="2%">:</td>
+                            <td>{{user.gender}}</td>
+                          </tr>  
+                          <tr>
+                            <th width="30%">Group</th>
+                            <td width="2%">:</td>
+                            <td>{{user.group}}</td>
+                          </tr>  
+                          <tr>
+                            <th width="30%">Intern</th>
+                            <td width="2%">:</td>
+                            <td>{{user.is_intern}}</td>
+                          </tr>  
+                          <tr>
+                            <th width="30%">Active</th>
+                            <td width="2%">:</td>
+                            <td>{{user.is_active}}</td>
+                          </tr>  
+                        </table> 
+                      </div> 
+                       
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Profile modal ends here -->
+
+
+
+

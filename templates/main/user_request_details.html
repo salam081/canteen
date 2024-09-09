@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container-xxl pt-2 pb-3">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h3 class="section-title ff-secondary text-center text-primary font-monospace">Request Details</h3>
+        </div>
+        
+        <div class="row g-5">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Request ID</th>
+                                <th scope="col">Meal</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            {% for detail in user_request_details %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ detail.id }}</td>
+                                <td>{{ detail.meal.title }}</td>
+                                <td>{{ detail.meal.price }}</td>
+                                <td>
+                                    <a href="{% url 'delete_meal_request' detail.id %}" class="btn btn-danger">Del</a>
+
+                                    <!-- Button trigger modal for Edit -->
+                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ detail.id }}">
+                                        Edit
+                                    </button>
+
+                                    <!-- Modal for Edit -->
+                                    <div class="modal fade" id="editModal{{ detail.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel{{ detail.id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="editModalLabel{{ detail.id }}">Select  Meal</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <form method="POST" action="{% url 'edit_meal_request' detail.id %}">
+                                                        {% csrf_token %}
+                                                        {{ form.as_p }}
+                                                        <button type="submit" class="btn btn-primary col-12">Save changes</button>
+                                                    </form>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5">No requests found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"><strong>Total</strong></td>
+                                <td id="totalPrice"><strong>₦0</strong></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,178 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-xxl pt-2 pb-3">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Registered Users</h3>
+    </div>
+    <div class="row g-5">
+      <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
+        <div class="card-body table-responsive">
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for entry in users_with_status %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ entry.user.firstname }}</td>
+            <td>{{ entry.user.lastname }}</td>
+            <td>{{ entry.user.department.title }}</td>
+            <td>{{ entry.user.unit.title }}</td>
+            <td>
+                {% if entry.has_dates_selected %}
+                    <button class="btn btn-primary open-calendar" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
+                            data-user-first-name="{{ entry.user.firstname }}" 
+                            data-user-last-name="{{ entry.user.lastname }}">
+                        Dates Have Been Selected
+                    </button>
+                {% else %}
+                    <button class="btn btn-primary open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
+                            data-user-first-name="{{ entry.user.firstname }}" 
+                            data-user-last-name="{{ entry.user.lastname }}">
+                        Select Dates
+                    </button>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No users available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Modal for each user -->
+ <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="calendarModalLabel">Select Dates for <span id="userFullName"></span></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="calendar-container1">
+              <div class="calendar-container">
+                <!-- Calendar structure goes here -->
+                <div class="calendar">
+                  <div class="year-header">
+                    <span class="left-button fa fa-chevron-left" id="prev">
+                    </span>
+                    <span class="year" id="label"></span>
+                    <span class="right-button fa fa-chevron-right" id="next">
+                    </span>
+                  </div>
+                  <table class="months-table w-100">
+                    <tbody>
+                      <tr class="months-row">
+                        <td class="month">Jan</td>
+                        <td class="month">Feb</td>
+                        <td class="month">Mar</td>
+                        <td class="month">Apr</td>
+                        <td class="month">May</td>
+                        <td class="month">Jun</td>
+                        <td class="month">Jul</td>
+                        <td class="month">Aug</td>
+                        <td class="month">Sep</td>
+                        <td class="month">Oct</td>
+                        <td class="month">Nov</td>
+                        <td class="month">Dec</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                
+                  <table class="days-table w-100">
+                    <td class="day">Sun</td>
+                    <td class="day">Mon</td>
+                    <td class="day">Tue</td>
+                    <td class="day">Wed</td>
+                    <td class="day">Thu</td>
+                    <td class="day">Fri</td>
+                    <td class="day">Sat</td>
+                  </table>
+                  <div class="frame">
+                    <table class="dates-table w-100">
+                      <tbody class="tbody"></tbody>
+                    </table>
+                  </div>
+                  <div class="buttons-div d-flex justify-content-between">
+                    <button class="button text-white" id="clear-button">Clear Selection(s)</button>
+                    <button class="button text-white" id="confirm-button" onclick="submitDate({{ user.id }})">Confirm Selection(s)</button>
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form method="POST" action="{% url 'add_staff_on_call' %}" id="dateForm{{ user.id }}" style="display: none;">
+              {% csrf_token %}
+              <input type="hidden" name="user" value="{{ user.id }}">
+              <input type="hidden" name="date_id" id="selectedDate">
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarModal = document.getElementById('calendarModal');
+    calendarModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var userId = button.getAttribute('data-user-id');
+        var userFirstName = button.getAttribute('data-user-first-name');
+        var userLastName = button.getAttribute('data-user-last-name');
+        
+        // Update the modal's content
+        var modalTitle = calendarModal.querySelector('#userFullName');
+        modalTitle.textContent = userFirstName + ' ' + userLastName;
+
+        // Update the form's user ID
+        var form = calendarModal.querySelector('form');
+        form.id = 'dateForm' + userId;
+        form.querySelector('input[name="user"]').value = userId;
+
+        // Update the confirm button's onclick attribute
+        var confirmButton = calendarModal.querySelector('#confirm-button');
+        confirmButton.setAttribute('onclick', 'submitDate(' + userId + ')');
+
+        // Here you can also update other parts of the modal
+        // For example, you might want to load user-specific calendar data
+        loadCalendarData(userId);
+    });
+});
+
+function loadCalendarData(userId) {
+    // This function would load the specific user's calendar data
+    // You might make an AJAX call to your server here
+    console.log('Loading calendar data for user ID:', userId);
+}
+
+function submitDate(userId) {
+    var form = document.getElementById('dateForm' + userId);
+    var selectedDateInput = document.getElementById('selectedDate' + userId);
+    // Set the selected date value here
+    // selectedDateInput.value = ... // Set this based on your calendar selection logic
+    form.submit();
+}
+
+</script>
+{% endblock content %}
+

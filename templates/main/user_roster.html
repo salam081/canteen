@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-xxl pt-2 pb-3">
+  <h1 class="text-center">My Call Roster</h1>
+  <div class="call-container">
+  
+    {% for date in user_call_dates %}
+        <div class="date-item">{{ date }}</div>
+    {% empty %}
+        <div class="date-item">No dates scheduled</div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
