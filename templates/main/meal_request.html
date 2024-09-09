@@ -8,15 +8,12 @@
     opacity: 0.6;
   }
 </style>
-<div class="container-xxl py-2">
+<div class="container-xxl">
   <div class="text-center mb-2 wow fadeInUp" data-wow-delay="0.1s">
-    <h5 class="section-title ff-secondary text-center text-primary fw-normal">
-      Food Menu
-    </h5>
+    <h3 class="section-title ff-secondary text-center text-primary font-monospace">Food Menu</h3>
   </div>
   {% if not on_call %}
-  <h3 class="text-center"> You Are Not on Call Today Contact Your Admin in your Unit </h3>
-
+    <h3 class="text-primary text-center">You are not on call today contect your Admin in your unit .</h3>
      {% else %}
      <div class="row g-5">
       <div
@@ -55,8 +52,21 @@
                     >
                       <i class="fa fa-hamburger fa-2x text-primary"></i>
                       <div class="ps-3">
-                        <small class="text-body">Special</small>
-                        <h6 class="mt-n1 mb-0">Swallow</h6>
+                        <small class="text-body">Sweet</small>
+                        <h6 class="mt-n1 mb-0">Food</h6>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="d-flex align-items-center text-start mx-3 pb-3"
+                      data-bs-toggle="pill"
+                      href="#tab-3"
+                    >
+                      <i class="fa fa-hamburger fa-2x text-primary"></i>
+                      <div class="ps-3">
+                        <small class="text-body">Nutricious</small>
+                        <h6 class="mt-n1 mb-0">Protein</h6>
                       </div>
                     </a>
                   </li>
@@ -64,7 +74,7 @@
                     <a
                       class="d-flex align-items-center text-start mx-3 me-0 pb-3"
                       data-bs-toggle="pill"
-                      href="#tab-3"
+                      href="#tab-4"
                     >
                       <i class="fa fa-coffee fa-2x text-primary"></i>
                       <div class="ps-3">
@@ -82,7 +92,7 @@
                       {% for meal in meals %}
                       <div class="col-10">
                         <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                          {%if meal.available %}
+                          {% if meal.available %}
                           style="cursor: pointer"
                           data-id="{{ meal.id }}"
                           data-title="{{ meal.title }}"
@@ -114,12 +124,51 @@
                       {% endfor %}
                     </div>
                   </div>
-  
-                  <!-- Swallow Meals -->
-                  <div id="tab-2" class="tab-pane fade show p-0">
-                    <div class="swallow-div row">
-                      {% for meal in swallow_meal %}
-  
+                  
+                  <!-- Food Meals-->
+                  <div id="tab-2" class="tab-pane fade show p-0 active">
+                    <div class="food-div row">
+                      <!-- Inside your existing meal display loops -->
+                      {% for meal in food_meal %}
+                      <div class="col-10">
+                        <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                          {% if meal.available %}
+                          style="cursor: pointer"
+                          data-id="{{ meal.id }}"
+                          data-title="{{ meal.title }}"
+                          data-price="{{ meal.price }}"
+                          data-category="{{ meal.category }}"
+                          data-url="{{ meal.image.url }}"
+                          {% endif %}>
+                          <img class="flex-shrink-0 img-fluid rounded"
+                            src="{{ meal.image.url }}"
+                            alt=""
+                            style="width: 80px"
+                          />
+                          <div class="w-100 d-flex flex-column text-start ps-4">
+                            <h5
+                              class="d-flex justify-content-between border-bottom pb-2"
+                            >
+                              <span
+                                class="{% if not meal.available %}strikethrough{% endif %}"
+                                >{{ meal.title }}</span
+                              >
+                              <span
+                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
+                                >&#8358;{{ meal.price }}</span
+                              >
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <!-- Protein -->
+                  <div id="tab-3" class="tab-pane fade show p-0">
+                    <div class="protein-div row">
+                      {% for meal in protein_meal %}
                       <div class="col-10">
                         <div
                           class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
@@ -152,13 +201,12 @@
                           </div>
                         </div>
                       </div>
-  
                       {% endfor %}
                     </div>
                   </div>
   
                   <!-- Drink Meals -->
-                  <div id="tab-3" class="tab-pane fade show p-0">
+                  <div id="tab-4" class="tab-pane fade show p-0">
                     <div class="drink-div row">
                       {% for meal in drink_meal %}
   
@@ -275,14 +323,14 @@
 
   // Render meals in respective categories
   let menuDiv = document.querySelector(".menu");
-  let swallowDiv = document.querySelector(".swallow-div");
+  let foodDiv = document.querySelector(".food-div")
+  let proteinDiv = document.querySelector(".protein-div");
   let drinkDiv = document.querySelector(".drink-div");
 
   mealArray.forEach((meal) => {
-    let mealDiv = `<div class="col-10">
-    <div class="meal d-flex align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
-      <img class="flex-shrink-0 img-fluid rounded" src="${meal.url}" alt="" style="width: 80px"/>
-      <div class="w-100 d-flex flex-column text-start ps-4">
+    let mealDiv = `<div class="col-12">
+    <div class="meal w-100 d-flex w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
+     <div class="d-flex flex-column text-start ps-4">
         <h5 class="d-flex justify-content-between border-bottom pb-2">
           <span>${meal.title}</span>
           <span class="text-primary">&#8358;${meal.price}</span>
@@ -291,9 +339,11 @@
     </div>
   </div>`;
 
-    if (meal.category === "swallow") {
-      swallowDiv.innerHTML += mealDiv;
-    } else if (meal.category === "drink") {
+    if (meal.category === "Food") {
+      foodDiv.innerHTML += mealDiv;
+    } else if (meal.category === "Protein") {
+      proteinDiv.innerHTML += mealDiv;
+    } else if (meal.category === "Drink"){
       drinkDiv.innerHTML += mealDiv;
     } else {
       menuDiv.innerHTML += mealDiv;
@@ -346,17 +396,12 @@
       document.querySelectorAll(".items-button").forEach((button) => {
         button.addEventListener("click", function () {
           const index = this.getAttribute("data-index");
-          let confirmRemoval = window.confirm(
-            `Are you sure you want to remove ${OrderArray[index].title} from your order?`
-          );
-
-          if (confirmRemoval) {
+          
             // Remove the item if confirmed
             OrderArray.splice(index, 1);
             UpdateTotalPrice();
             UpdateOrderList();
             console.log(OrderArray);
-          }
         });
       });
       // Update hidden form

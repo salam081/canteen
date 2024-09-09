@@ -31,16 +31,16 @@
             <td>{{ entry.user.unit.title }}</td>
             <td>
                 {% if entry.has_dates_selected %}
-                    <button class="btn btn-primary open-calendar" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
+                    <button class="btn btn-success open-calendar" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
-                        Dates Have Been Selected
+                        Update Call Dates
                     </button>
                 {% else %}
                     <button class="btn btn-primary open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
-                        Select Dates
+                        Select Call Dates
                     </button>
                 {% endif %}
             </td>
