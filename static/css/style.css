@@ -1,13 +1,49 @@
 /*** Beginning of alerts ***/
 .alert-success {
-  background-color: green;
-  color: white;
+  background-color: rgb(72, 187, 72);
+  opacity: 1; 
 }
 .alert-error {
   background-color: red;
-  color: white !important;
+  opacity:1;
 }
+
+.alert-warning{
+  background-color: rgb(219, 73, 19);
+  opacity:1;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-container .dropdown-menu {
+  position: absolute;
+  z-index: 10000;
+  right: 0;
+  left: auto;
+}
+
 /*** End of alerts ***/
+
+.custom-toast-container {
+  z-index: 1000;
+  height: auto; 
+  padding: 20px;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  border-radius: 50px;
+}
+
+
+
+  @media screen and (max-width: 991px) {
+    .supporting-container {
+      padding-top: 3px !important;
+      padding-bottom: 3px !important;
+    }
+  }
 
 *{
   padding: 0px;
@@ -68,7 +104,7 @@ footer {
   padding: 10px;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 995px) {
   .call-container {
     width: 90%;
   }
@@ -882,6 +918,7 @@ input[type="month"] {
 .hero-header img {
   animation: imgRotate 50s linear infinite;
 }
+
 
 @keyframes imgRotate {
   100% {

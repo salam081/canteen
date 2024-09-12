@@ -29,8 +29,8 @@ def admin_page(request):
 
     dates_selected = Roster.objects.filter(user=current_user, date=current_date).exists()
     users = User.objects.none()
-    if current_user.department and current_user.unit:
-        users = User.objects.filter(department=current_user.department, unit=current_user.unit)
+    if current_user.department: #and current_user.unit:
+        users = User.objects.filter(department=current_user.department,group__title = 'User' )#unit=current_user.unit
     
     users_with_status = []
     for user in users:
@@ -222,3 +222,15 @@ def delete_meal_request(request, id):
     return redirect('meal_request_details')
 
 
+def meal_request_list(request):
+    requests = Request.objects.all()
+    context = {'requests': requests}
+    return render(request, 'main/pending_meal_requests.html',context)
+
+
+def approve_meal_request(request,id):
+    user_request = Request.objects.get(id=id)
+    pending_details = RequestDetails.objects.filter(request=user_request, status='Pending')
+    if pending_details.exists():
+        pending_details.update(status='Approved')
+    return redirect('meal_request_list')

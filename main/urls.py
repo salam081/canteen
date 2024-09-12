@@ -13,5 +13,8 @@ urlpatterns = [
     path('meal_request_details', views.meal_request_details, name="meal_request_details"),    
     path('edit_meal_request/<str:id>/', views.edit_meal_request, name="edit_meal_request"), 
     path('delete_meal_request/<str:id>/', views.delete_meal_request, name="delete_meal_request"), 
+
+    path('meal_request_list',views.meal_request_list, name='meal_request_list'),
+    path('approve_request/<int:id>/', views.approve_meal_request, name='approve_meal_request'),
     
 ]   

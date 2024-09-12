@@ -61,7 +61,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            if user.group and user.group.title == 'Admin':
+            if user.group and user.group.title == 'Admin Officer':
                 messages.success(request,f'Welcome  Back {user.username} ')
                 return redirect('admin_page')
             

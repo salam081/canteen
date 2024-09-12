@@ -2,13 +2,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-3 py-3 py-lg-0">
         <a href="" class="navbar-brand p-0">
             <h4 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Tasty Bites App</h4>
-            <!-- <img src="img/logo.png" alt="Logo"> -->
         </a>
-
-        <a href="" class="mx-5"  data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
-            <i class="bi bi-zoom-in"></i>
-        </a>
-
+          <a href="" class="mx-5"  data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
+                <i class="bi bi-zoom-in"></i>
+            </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
@@ -17,12 +14,16 @@
                 <a href="" class="nav-item nav-link">Home</a>
                 <a href="" class="nav-item nav-link">About</a>
                
-                {% comment %} <a href="{% url 'call_roster' %}" class="nav-item nav-link">Call Roster</a>                 {% endcomment %}
                 <a href="" class="nav-item nav-link">Contact</a>
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.group.title == 'Canteen manager'%}
                  <a href="{% url 'canteen_manager' %}" class="nav-item nav-link">Canteen Manager</a>
+                
+                {%endif%}
+                {% if user.is_authenticated and user.group.title == 'Admin Officer'%}
+                
                 <a href="{% url 'admin_page' %}" class="nav-item nav-link">Admin Page</a>
-               
+                {%endif%}
+               {% if user.is_authenticated and user.group.title == 'User'%}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Call Info</a>
                     <div class="dropdown-menu m-0">
@@ -31,38 +32,35 @@
                         <a href="{% url 'meal_request_details' %}" class="dropdown-item" >Request Details</a>
                     </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i>{{request.user.username}}</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="" class="dropdown-item"data-bs-toggle="modal" data-bs-target="#profile" >Profile</a>
-                        <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_password">Change Password</a>
-                        <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_unit">Change Unit/Dept</a>
-                        <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                    </div>
-                </div>
-                {% else %}
+                {%endif%}
                 
-                <a href="" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#login">Log In</a>
+                
+                {% if user.is_authenticated %}
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i>{{request.user.username}}</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="" class="dropdown-item"data-bs-toggle="modal" data-bs-target="#profile" >Profile</a>
+                            <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_password">Change Password</a>
+                            <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_unit">Change Unit/Dept</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                    <span class="nav-item nav-link"></span>
+                    <span class="nav-item nav-link"></span>
+                    
+               {% else %}
+               <a href="" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#login">Log In</a>
                 <a href="" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#register">Register</a>
                 {% endif %}
-                
-                
+
             </div>
             
         </div>
     </nav>
         
-    <div class="container-xxl py-5 bg-dark">
+    <div class="container-xxl py-5 bg-dark supporting-container">
         <div class="container my-1 py-1">
             <div class="row align-items-center g-5">
-                <!-- <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                    <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Order Meal</a>
-                </div>
-                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                    <img class="img-fluid" src="/static/img/hero.png" alt="">
-                </div> -->
             </div>
         </div>
     </div>

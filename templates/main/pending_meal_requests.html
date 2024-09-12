@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-xxl pt-2 pb-3">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Pending User Requests</h3>
+    </div>
+    <div class="row g-5">
+      <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
+        {% for request in requests  %}
+        <div>
+        <h3>{{request.user.username}}</h3>
+        <ul>
+        {% for detail  in request.requestdetails_set.all  %}
+        <li>{{detail.meal}} - {{detail.status}}</li>
+        {% endfor %}
+        
+        </ul>
+        <form method="POST" action="{% url 'approve_meal_request' request.id %}">
+          {% csrf_token %}
+          <button type="submit">Approve</button>
+        </form>
+        </div>
+        
+        {% endfor %}
+    {% comment %} <ul>
+    
+        {% for request in pending_requests %}
+            <li>
+                {{ request.request }} - {{ request_detail.meal }}
+                <a href="{% url 'approve_meal_request' request.id %}">Approve</a>
+            </li>
+        {% empty %}
+            <li>No pending meal requests.</li>
+        {% endfor %}
+    </ul> {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+

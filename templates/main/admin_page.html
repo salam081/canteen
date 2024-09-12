@@ -4,11 +4,11 @@
 
 <div class="container-xxl pt-2 pb-3">
   <div class="container">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <div class="text-center wow" data-wow-delay="0.1s">
       <h3 class="section-title ff-secondary text-center text-primary font-monospace">Registered Users</h3>
     </div>
     <div class="row g-5">
-      <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
+      <div class="card shadow wow" data-wow-delay="0.1s">
         <div class="card-body table-responsive">
   <table class="table">
     <thead>
@@ -31,7 +31,7 @@
             <td>{{ entry.user.unit.title }}</td>
             <td>
                 {% if entry.has_dates_selected %}
-                    <button class="btn btn-success open-calendar" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
+                    <button class="btn btn-success open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
                         Update Call Dates
@@ -52,10 +52,6 @@
         {% endfor %}
     </tbody>
 </table>
-
-
-
-
         </div>
       </div>
     </div>
@@ -152,27 +148,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update the confirm button's onclick attribute
         var confirmButton = calendarModal.querySelector('#confirm-button');
         confirmButton.setAttribute('onclick', 'submitDate(' + userId + ')');
-
-        // Here you can also update other parts of the modal
-        // For example, you might want to load user-specific calendar data
         loadCalendarData(userId);
     });
 });
 
 function loadCalendarData(userId) {
-    // This function would load the specific user's calendar data
-    // You might make an AJAX call to your server here
     console.log('Loading calendar data for user ID:', userId);
 }
 
 function submitDate(userId) {
     var form = document.getElementById('dateForm' + userId);
     var selectedDateInput = document.getElementById('selectedDate' + userId);
-    // Set the selected date value here
-    // selectedDateInput.value = ... // Set this based on your calendar selection logic
     form.submit();
 }
-
 </script>
 {% endblock content %}
 
