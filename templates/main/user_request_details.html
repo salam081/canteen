@@ -28,23 +28,49 @@
                                 <td>{{ detail.meal.title }}</td>
                                 <td>{{ detail.meal.price }}</td>
                                 <td>
-                                    <a href="{% url 'delete_meal_request' detail.id %}" class="btn btn-danger">Del</a>
+                                    
+                                    <!-- Button trigger modal for Delete -->
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ detail.id }}">Del</button>
+
 
                                     <!-- Button trigger modal for Edit -->
                                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ detail.id }}">
                                         Edit
                                     </button>
 
+                                    <!-- Modal for Del -->
+                                    <div class="modal fade" id="deleteModal{{ detail.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel{{detail.id}}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content bg-dark">
+                                            <div class="modal-header text-dark">
+                                              <p class="text-primary">✉ Notification</p>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container wow" data-wow-delay="0.1s">
+                                                  <div class="bg-dark d-flex align-items-center">
+                                                    <div class="p-1 wow" data-wow-delay="0.2s">
+                                                      <p class="text-white" id="alertMessage">Are you sure you want to delete this meal request?</p>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <a href="{% url 'delete_meal_request' detail.id %}" class="btn btn-danger">Del</a>
+                                            </div>
+                                            </div>
+                                          </div>
+                                      </div>
+
                                     <!-- Modal for Edit -->
                                     <div class="modal fade" id="editModal{{ detail.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel{{ detail.id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
+                                            <div class="modal-content bg-dark">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="editModalLabel{{ detail.id }}">Select  Meal</h1>
+                                                    <h1 class="modal-title fs-5 text-white" id="editModalLabel{{ detail.id }}">Select Meal</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    
                                                     <form method="POST" action="{% url 'edit_meal_request' detail.id %}">
                                                         {% csrf_token %}
                                                         {{ form.as_p }}
@@ -77,4 +103,5 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}

@@ -3,6 +3,7 @@
   .strikethrough {
     text-decoration: line-through;
   }
+
   .non-clickable {
     pointer-events: none;
     opacity: 0.6;
@@ -12,313 +13,254 @@
   <div class="text-center mb-2 wow" data-wow-delay="0.1s">
     <h3 class="section-title ff-secondary text-center text-primary font-monospace">Food Menu</h3>
   </div>
-  
-  {% if not on_call %}
-    <h3 class="text-primary text-center">You are not on call today contact your Admin in your unit.</h3>
-     {% else %}
-     <div class="row g-5">
-      <div
-        class="card col-md-10 offset-md-1 shadow wow"
-        data-wow-delay="0.1s"
-      >
-        <div class="card-body">
-          <div class="row g-4">
-            <!-- Menu Section -->
-            <div class="col-lg-8 d-flex flex-column">
-              <div
-                class="tab-class text-center wow"
-                data-wow-delay="0.1s"
-              >
-                <ul
-                  class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5"
-                >
-                  <li class="nav-item">
-                    <a
-                      class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active"
-                      data-bs-toggle="pill"
-                      href="#tab-1"
-                    >
-                      <i class="fa fa-utensils fa-2x text-primary"></i>
-                      <div class="ps-3">
-                        <small class="text-body">Our</small>
-                        <h6 class="mt-n1 mb-0">Menu</h6>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="d-flex align-items-center text-start mx-3 pb-3"
-                      data-bs-toggle="pill"
-                      href="#tab-2"
-                    >
-                      <i class="fa fa-hamburger fa-2x text-primary"></i>
-                      <div class="ps-3">
-                        <small class="text-body">Sweet</small>
-                        <h6 class="mt-n1 mb-0">Food</h6>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="d-flex align-items-center text-start mx-3 pb-3"
-                      data-bs-toggle="pill"
-                      href="#tab-3"
-                    >
-                      <i class="fa fa-hamburger fa-2x text-primary"></i>
-                      <div class="ps-3">
-                        <small class="text-body">Nutricious</small>
-                        <h6 class="mt-n1 mb-0">Protein</h6>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="d-flex align-items-center text-start mx-3 me-0 pb-3"
-                      data-bs-toggle="pill"
-                      href="#tab-4"
-                    >
-                      <i class="fa fa-coffee fa-2x text-primary"></i>
-                      <div class="ps-3">
-                        <small class="text-body">Lovely</small>
-                        <h6 class="mt-n1 mb-0">Drinks</h6>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-                <div class="tab-content">
-                  <!-- All Meals -->
-                  <div id="tab-1" class="tab-pane fade show p-0 active">
-                    <div class="menu">
-                      <!-- Inside your existing meal display loops -->
-                      {% for meal in meals %}
-                      <div class="col-10">
-                        <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                          {% if meal.available %}
-                          style="cursor: pointer"
-                          data-id="{{ meal.id }}"
-                          data-title="{{ meal.title }}"
-                          data-price="{{ meal.price }}"
-                          data-category="{{ meal.category }}"
-                          data-url="{{ meal.image.url }}"
-                          {% endif %}>
-                          <img class="flex-shrink-0 img-fluid rounded"
-                            src="{{ meal.image.url }}"
-                            alt=""
-                            style="width: 80px"
-                          />
-                          <div class="w-100 d-flex flex-column text-start ps-4">
-                            <h5
-                              class="d-flex justify-content-between border-bottom pb-2"
-                            >
-                              <span
-                                class="{% if not meal.available %}strikethrough{% endif %}"
-                                >{{ meal.title }}</span
-                              >
-                              <span
-                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
-                                >&#8358;{{ meal.price }}</span
-                              >
-                            </h5>
-                          </div>
-                        </div>
-                      </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-                  
-                  <!-- Food Meals-->
-                  <div id="tab-2" class="tab-pane fade show p-0 active">
-                    <div class="food-div row">
-                      <!-- Inside your existing meal display loops -->
-                      {% for meal in food_meal %}
-                      <div class="col-10">
-                        <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                          {% if meal.available %}
-                          style="cursor: pointer"
-                          data-id="{{ meal.id }}"
-                          data-title="{{ meal.title }}"
-                          data-price="{{ meal.price }}"
-                          data-category="{{ meal.category }}"
-                          data-url="{{ meal.image.url }}"
-                          {% endif %}>
-                          <img class="flex-shrink-0 img-fluid rounded"
-                            src="{{ meal.image.url }}"
-                            alt=""
-                            style="width: 80px"
-                          />
-                          <div class="w-100 d-flex flex-column text-start ps-4">
-                            <h5
-                              class="d-flex justify-content-between border-bottom pb-2"
-                            >
-                              <span
-                                class="{% if not meal.available %}strikethrough{% endif %}"
-                                >{{ meal.title }}</span
-                              >
-                              <span
-                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
-                                >&#8358;{{ meal.price }}</span
-                              >
-                            </h5>
-                          </div>
-                        </div>
-                      </div>
-                      {% endfor %}
-                    </div>
-                  </div>
 
-                  <!-- Protein -->
-                  <div id="tab-3" class="tab-pane fade show p-0">
-                    <div class="protein-div row">
-                      {% for meal in protein_meal %}
-                      <div class="col-10">
-                        <div
-                          class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                          style="cursor: pointer"
-                          data-id="{{ meal.id }}"
-                          data-title="{{ meal.title }}"
-                          data-price="{{ meal.price }}"
-                          data-category="{{ meal.category }}"
-                          data-url="{{ meal.image.url }}"
-                        >
-                          <img
-                            class="flex-shrink-0 img-fluid rounded"
-                            src="{{ meal.image.url }}"
-                            alt=""
-                            style="width: 80px"
-                          />
-                          <div class="w-100 d-flex flex-column text-start ps-4">
-                            <h5
-                              class="d-flex justify-content-between border-bottom pb-2"
+  {% if not on_call %}
+  <h3 class="text-primary text-center">You are not on call today contact your Admin in your unit.</h3>
+  {% else %}
+  <div class="row g-5">
+    <div class="card col-md-10 offset-md-1 shadow wow" data-wow-delay="0.1s">
+      <div class="card-body">
+        <div class="row g-4">
+          <!-- Menu Section -->
+          <div class="col-lg-8 d-flex flex-column">
+            <div class="tab-class text-center wow" data-wow-delay="0.1s">
+              <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+                <li class="nav-item">
+                  <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill"
+                    href="#tab-1">
+                    <i class="fa fa-utensils fa-2x text-primary"></i>
+                    <div class="ps-3">
+                      <small class="text-body">Our</small>
+                      <h6 class="mt-n1 mb-0">Menu</h6>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+                    <i class="fa fa-hamburger fa-2x text-primary"></i>
+                    <div class="ps-3">
+                      <small class="text-body">Sweet</small>
+                      <h6 class="mt-n1 mb-0">Food</h6>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-3">
+                    <i class="fa fa-hamburger fa-2x text-primary"></i>
+                    <div class="ps-3">
+                      <small class="text-body">Nutricious</small>
+                      <h6 class="mt-n1 mb-0">Protein</h6>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
+                    <i class="fa fa-coffee fa-2x text-primary"></i>
+                    <div class="ps-3">
+                      <small class="text-body">Lovely</small>
+                      <h6 class="mt-n1 mb-0">Drinks</h6>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <!-- All Meals -->
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                  <div class="menu">
+                    <!-- Inside your existing meal display loops -->
+                    {% for meal in meals %}
+                    <div class="col-10">
+                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                        {% if meal.available %}
+                        style="cursor: pointer"
+                        data-id="{{ meal.id }}"
+                        data-title="{{ meal.title }}"
+                        data-price="{{ meal.price }}"
+                        data-category="{{ meal.category }}"
+                        data-url="{{ meal.image.url }}"
+                        {% endif %}>
+                        <img class="flex-shrink-0 img-fluid rounded"
+                          src="{{ meal.image.url }}"
+                          alt=""
+                          style="width: 80px"
+                        />
+                        <div class="w-100 d-flex flex-column text-start ps-4">
+                          <h5
+                            class="d-flex justify-content-between border-bottom pb-2"
+                          >
+                            <span
+                              class="{% if not meal.available %}strikethrough{% endif %}"
+                              >{{ meal.title }}</span
                             >
-                              <span
-                                class="{% if not meal.available %}strikethrough{% endif %}"
-                                >{{ meal.title }}</span
-                              >
-                              <span
-                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
-                                >&#8358;{{ meal.price }}</span
-                              >
-                            </h5>
-                          </div>
+                            <span
+                              class="text-primary {% if not meal.available %}strikethrough{% endif %}"
+                              >&#8358;{{ meal.price }}</span
+                            >
+                          </h5>
                         </div>
                       </div>
-                      {% endfor %}
                     </div>
+                    {% endfor %}
                   </div>
-  
-                  <!-- Drink Meals -->
-                  <div id="tab-4" class="tab-pane fade show p-0">
-                    <div class="drink-div row">
-                      {% for meal in drink_meal %}
-  
-                      <div class="col-10">
-                        <div
-                          class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                          style="cursor: pointer"
-                          data-id="{{ meal.id }}"
-                          data-title="{{ meal.title }}"
-                          data-price="{{ meal.price }}"
-                          data-category="{{ meal.category }}"
-                          data-url="{{ meal.image.url }}"
-                        >
-                          <img
-                            class="flex-shrink-0 img-fluid rounded"
-                            src="{{ meal.image.url }}"
-                            alt=""
-                            style="width: 80px"
-                          />
-                          <div class="w-100 d-flex flex-column text-start ps-4">
-                            <h5
-                              class="d-flex justify-content-between border-bottom pb-2"
-                            >
-                              <span
-                                class="{% if not meal.available %}strikethrough{% endif %}"
-                                >{{ meal.title }}</span
-                              >
-                              <span
-                                class="text-primary {% if not meal.available %}strikethrough{% endif %}"
-                                >&#8358;{{ meal.price }}</span
-                              >
-                            </h5>
-                          </div>
+                </div>
+
+                <!-- Food Meals-->
+                <div id="tab-2" class="tab-pane fade show p-0 active">
+                  <div class="food-div row">
+                    <!-- Inside your existing meal display loops -->
+                    {% for meal in food_meal %}
+                    <div class="col-10">
+                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}" 
+                        {% if meal.available %} style="cursor: pointer" data-id="{{ meal.id }}"
+                        data-title="{{ meal.title }}" data-price="{{ meal.price }}" data-category="{{ meal.category }}"
+                        data-url="{{ meal.image.url }}" {% endif %}>
+                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
+                          style="width: 80px" />
+                        <div class="w-100 d-flex flex-column text-start ps-4">
+                          <h5 class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                          </h5>
                         </div>
                       </div>
-  
-                      {% endfor %}
                     </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <!-- Protein -->
+                <div id="tab-3" class="tab-pane fade show p-0">
+                  <div class="protein-div row">
+                    {% for meal in protein_meal %}
+                    <div class="col-10">
+                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                        style="cursor: pointer" data-id="{{ meal.id }}" data-title="{{ meal.title }}"
+                        data-price="{{ meal.price }}" data-category="{{ meal.category }}"
+                        data-url="{{ meal.image.url }}">
+                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
+                          style="width: 80px" />
+                        <div class="w-100 d-flex flex-column text-start ps-4">
+                          <h5 class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <!-- Drink Meals -->
+                <div id="tab-4" class="tab-pane fade show p-0">
+                  <div class="drink-div row">
+                    {% for meal in drink_meal %}
+                    <div class="col-10">
+                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                        style="cursor: pointer" data-id="{{ meal.id }}" data-title="{{ meal.title }}"
+                        data-price="{{ meal.price }}" data-category="{{ meal.category }}"
+                        data-url="{{ meal.image.url }}">
+                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
+                          style="width: 80px" />
+                        <div class="w-100 d-flex flex-column text-start ps-4">
+                          <h5 class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+
+                    {% endfor %}
                   </div>
                 </div>
               </div>
             </div>
-  
-            <!-- Meal Order Section -->
-            <div class="col-lg-4 d-flex flex-column">
-              <div
-                class="meal-order wow border border-warning rounded-top p-2"
-                style="height: 25rem; position: relative"
-                data-wow-delay="0.1s"
-              >
-                <div class="text-center wow" data-wow-delay="0.1s">
-                  <h5
-                    class="section-title ff-secondary text-center text-primary fw-normal"
-                    style="
+          </div>
+
+          <!-- Meal Order Section -->
+          <div class="col-lg-4 d-flex flex-column">
+            <div class="meal-order wow border border-warning rounded-top p-2" style="height: 25rem; position: relative"
+              data-wow-delay="0.1s">
+              <div class="text-center wow" data-wow-delay="0.1s">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal" style="
                       position: absolute;
                       top: 0;
                       left: 50%;
                       transform: translateX(-50%);
-                    "
-                  >
-                    Your Order
-                  </h5>
-                  <br />
-                  <div id="order-list">
-                    <div style="position: absolute; top: 30%; left: 23%">
-                      <img src="/static/img/chef.jpeg" alt="chef image" />
-                      <p><i>Start placing your order...</i></p>
-                    </div>
+                    ">
+                  Your Order
+                </h5>
+                <br />
+                <div id="order-list">
+                  <div style="position: absolute; top: 30%; left: 23%">
+                    <img src="/static/img/chef.jpeg" alt="chef image" />
+                    <p><i>Start placing your order...</i></p>
                   </div>
-  
-                  <div
-                    style="
+                </div>
+
+                <div style="
                       position: absolute;
                       bottom: 0;
                       left: 50%;
                       transform: translateX(-50%);
-                    "
-                    class="text-center"
-                  >
-                    <div
-                      id="totalDiv"
-                      class="text-primary fw-normal border-top"
-                    ></div>
-  
-                    <!-- Add hidden form to submit order -->
-                    <form method="post">
-                      {% csrf_token %}
-                      <div id="meal-form"></div>
-                      <button
-                        type="submit"
-                        class="btn btn-primary py-1 px-2 mb-1 rounded-pill"
-                      >
-                        PLACE ORDER
-                      </button>
-                    </form>
-                  </div>
+                    " class="text-center">
+                  <div id="totalDiv" class="text-primary fw-normal border-top"></div>
+
+                  <!-- Add hidden form to submit order -->
+                  <form method="post">
+                    {% csrf_token %}
+                    <div id="meal-form"></div>
+                    <button type="submit" class="btn btn-primary py-1 px-2 mb-1 rounded-pill">
+                      PLACE ORDER
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
+  </div>
   {% endif %}
-  
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="customAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="customAlertLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark">
+      <div class="modal-header text-dark">
+        <p class="text-primary">✉ Notification</p>
+        <!-- <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+          <div class="container wow" data-wow-delay="0.1s">
+            <div class="bg-dark d-flex align-items-center">
+              <div class="p-1 wow" data-wow-delay="0.2s">
+                <p class="text-white" id="alertMessage"></p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+      </div>
+    </div>
+</div>
+
 <script>
   let OrderArray = [];
   let mealArray = [
     // Meal data here
   ];
+
+  //function to show modal alerting price exceeding limit
+  function showCustomAlert(message) {
+  $('#alertMessage').text(message);
+  $('#customAlert').modal('show');
+}
 
   let priceLimit = 2000; // Set your price limit here
 
@@ -344,7 +286,7 @@
       foodDiv.innerHTML += mealDiv;
     } else if (meal.category === "Protein") {
       proteinDiv.innerHTML += mealDiv;
-    } else if (meal.category === "Drink"){
+    } else if (meal.category === "Drink") {
       drinkDiv.innerHTML += mealDiv;
     } else {
       menuDiv.innerHTML += mealDiv;
@@ -368,11 +310,11 @@
 
       if (currentTotal + mealDetails.price <= priceLimit) {
         OrderArray.push(mealDetails);
-        console.log(OrderArray);
         UpdateOrderList();
         UpdateTotalPrice();
       } else {
-        alert(`Adding this meal exceeds the price limit of ₦${priceLimit}.`);
+        // alert(`Adding this meal exceeds the price limit of ₦${priceLimit}.`);
+        showCustomAlert(`Adding this meal exceeds the price limit of ₦${priceLimit}.`)
       }
     });
   });
@@ -397,12 +339,12 @@
       document.querySelectorAll(".items-button").forEach((button) => {
         button.addEventListener("click", function () {
           const index = this.getAttribute("data-index");
-          
-            // Remove the item if confirmed
-            OrderArray.splice(index, 1);
-            UpdateTotalPrice();
-            UpdateOrderList();
-            console.log(OrderArray);
+
+          // Remove the item if confirmed
+          OrderArray.splice(index, 1);
+          UpdateTotalPrice();
+          UpdateOrderList();
+          console.log(OrderArray);
         });
       });
       // Update hidden form
