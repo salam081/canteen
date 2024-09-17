@@ -3,43 +3,67 @@
 {% block content %}
 
 <div class="container-xxl pt-2 pb-3">
-  <div class="container">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Pending User Requests</h3>
-    </div>
-    <div class="row g-5">
-      <div class="card shadow wow fadeInUp" data-wow-delay="0.1s">
-        {% for request in requests  %}
-        <div>
-        <h3>{{request.user.username}}</h3>
-        <ul>
-        {% for detail  in request.requestdetails_set.all  %}
-        <li>{{detail.meal}} - {{detail.status}}</li>
-        {% endfor %}
+  <div class="container ">
+    <div class="text-center">
+      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Pending Meal Requests List</h3>
+  </div>
+    <div class="card col-10 offset-1">
+    <div class="card-body">
+      
+      {% if requests %}
         
-        </ul>
-        <form method="POST" action="{% url 'approve_meal_request' request.id %}">
-          {% csrf_token %}
-          <button type="submit">Approve</button>
-        </form>
+      {% for request in requests %}
+      <div class="card  p-1">
+        <div class="card-header" id="heading-{{ request.id }}">
+          <h5 class="mb-0 d-flex justify-content-between align-items-center ">
+            <button class="btn btn-btn-outline-primary text-dark" data-bs-toggle="collapse" data-bs-target="#collapse-{{ request.id }}" aria-expanded="true" aria-controls="collapse-{{ request.id }}">
+              <span>{{ request.user.firstname }}</span>  <span>{{ request.user.lastname }} </span> <span><small>(Click to view details)</small></span>
+            </button>
+            <div>
+              <form method="POST" action="{% url 'approve_meal_request' request.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="request_id" value="{{ request.id }}">
+                <button type="submit" name="action" value="approve" class="btn btn-success btn-sm m-1">Approve</button>
+                <button type="submit" name="action" value="decline" class="btn btn-danger btn-sm m-1">Decline</button>
+              </form>
+            </div>
+          </h5>
         </div>
-        
-        {% endfor %}
-    {% comment %} <ul>
-    
-        {% for request in pending_requests %}
-            <li>
-                {{ request.request }} - {{ request_detail.meal }}
-                <a href="{% url 'approve_meal_request' request.id %}">Approve</a>
-            </li>
-        {% empty %}
-            <li>No pending meal requests.</li>
-        {% endfor %}
-    </ul> {% endcomment %}
+
+        <div id="collapse-{{ request.id }}" class="collapse" aria-labelledby="heading-{{ request.id }}">
+          <div class="card-body">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Request ID</th>
+                  <th>Meal</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for detail in request.requestdetails_set.all %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ detail.id }}</td>
+                    <td>{{ detail.meal }}</td>
+                    <td>{{ detail.meal.price }}</td>
+                  </tr>
+                {% empty %}
+                  
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
+    {% endfor %}
+    {% else %}
+    <h2 class='text-center '>No Pending Meal available.</h2>
+    {% endif %}
+    </div>
     </div>
   </div>
 </div>
 
 {% endblock content %}
-

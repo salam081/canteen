@@ -1,8 +1,12 @@
 <div>
     <div class="footer container-fluid bg-dark text-light text-center flex justify-content-center align-items-center p-4 wow" data-wow-delay="0.1s">
         <span>
-            <span>&copy; <b>FMCK CITTU</b>, All Right Reserved.</span>
+            <span>&copy; <b><span id="year"></span> FMCK CITTU.</b></span>
             <span>Designed By <b class="text-primary">CITTU DEV</b></span>
         </span>
     </div>
 </div>
+<script>
+    const currentyear = new Date().getFullYear()
+    document.getElementById('year').textContent = currentyear
+</script>

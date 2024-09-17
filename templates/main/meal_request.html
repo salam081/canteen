@@ -9,20 +9,20 @@
     opacity: 0.6;
   }
 </style>
-<div class="container-xxl">
-  <div class="text-center mb-2 wow" data-wow-delay="0.1s">
-    <h3 class="section-title ff-secondary text-center text-primary font-monospace">Food Menu</h3>
-  </div>
-
-  {% if not on_call %}
-  <h3 class="text-primary text-center">You are not on call today contact your Admin in your unit.</h3>
-  {% else %}
+<div class="container-xxl d-flex justify-content-center align-items-center">
   <div class="row g-5">
-    <div class="card col-md-10 offset-md-1 shadow wow" data-wow-delay="0.1s">
+    <div class="text-center wow" data-wow-delay="0.1s">
+      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Food Menu</h3>
+    </div>
+  
+    {% if not on_call %}
+    <h3 class="text-primary text-center">You are not on call today contact your Admin in your unit.</h3>
+    {% else %}
+    <div class="card d-flex justify-content-between col-md-10 offset-md-1 shadow wow mt-2 mb-2" data-wow-delay="0.1s">
       <div class="card-body">
         <div class="row g-4">
           <!-- Menu Section -->
-          <div class="col-lg-8 d-flex flex-column">
+          <div class="col-lg-8 d-flex flex-column mt-5">
             <div class="tab-class text-center wow" data-wow-delay="0.1s">
               <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                 <li class="nav-item">
@@ -30,7 +30,7 @@
                     href="#tab-1">
                     <i class="fa fa-utensils fa-2x text-primary"></i>
                     <div class="ps-3">
-                      <small class="text-body">Our</small>
+                      <!-- <small class="text-body">Our</small> -->
                       <h6 class="mt-n1 mb-0">Menu</h6>
                     </div>
                   </a>
@@ -39,25 +39,25 @@
                   <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
                     <i class="fa fa-hamburger fa-2x text-primary"></i>
                     <div class="ps-3">
-                      <small class="text-body">Sweet</small>
+                      <!-- <small class="text-body">Sweet</small> -->
                       <h6 class="mt-n1 mb-0">Food</h6>
                     </div>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-3">
-                    <i class="fa fa-hamburger fa-2x text-primary"></i>
+                    <i class="fa fa-drumstick-bite fa-2x text-primary"></i>
                     <div class="ps-3">
-                      <small class="text-body">Nutricious</small>
-                      <h6 class="mt-n1 mb-0">Protein</h6>
+                      <!-- <small class="text-body">Nutricious</small> -->
+                      <h6 class="mt-n1 mb-0">Proteins</h6>
                     </div>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
-                    <i class="fa fa-coffee fa-2x text-primary"></i>
+                    <i class="fa fa-wine-bottle fa-2x text-primary"></i>
                     <div class="ps-3">
-                      <small class="text-body">Lovely</small>
+                      <!-- <small class="text-body">Lovely</small> -->
                       <h6 class="mt-n1 mb-0">Drinks</h6>
                     </div>
                   </a>
@@ -262,7 +262,7 @@
   $('#customAlert').modal('show');
 }
 
-  let priceLimit = 2000; // Set your price limit here
+  const priceLimit = 1700; // Set your price limit here
 
   // Render meals in respective categories
   let menuDiv = document.querySelector(".menu");
@@ -270,28 +270,32 @@
   let proteinDiv = document.querySelector(".protein-div");
   let drinkDiv = document.querySelector(".drink-div");
 
-  mealArray.forEach((meal) => {
-    let mealDiv = `<div class="col-12">
-    <div class="meal w-100 d-flex w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
-     <div class="d-flex flex-column text-start ps-4">
+
+mealArray.forEach((meal) => {
+  let mealDiv = document.createElement('div');
+  mealDiv.className = 'col-12';
+  mealDiv.innerHTML = `
+    <div class="meal col-sm-12 w-100  w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
+     <div class=" flex-column col-sm-12 text-start ps-4">
         <h5 class="d-flex justify-content-between border-bottom pb-2">
           <span>${meal.title}</span>
           <span class="text-primary">&#8358;${meal.price}</span>
         </h5>
       </div>
     </div>
-  </div>`;
+  `;
 
-    if (meal.category === "Food") {
-      foodDiv.innerHTML += mealDiv;
-    } else if (meal.category === "Protein") {
-      proteinDiv.innerHTML += mealDiv;
-    } else if (meal.category === "Drink") {
-      drinkDiv.innerHTML += mealDiv;
-    } else {
-      menuDiv.innerHTML += mealDiv;
-    }
-  });
+  if (meal.Category === "Food") {
+    foodDiv.appendChild(mealDiv);
+  } else if (meal.Category === "Protein") {
+    proteinDiv.appendChild(mealDiv);
+  } else if (meal.Category === "Drink") {
+    drinkDiv.appendChild(mealDiv);
+  } else {
+    menuDiv.appendChild(mealDiv);
+  }
+});
+
 
   // Select meals
   document.querySelectorAll(".meal").forEach((mealElement) => {
@@ -344,7 +348,6 @@
           OrderArray.splice(index, 1);
           UpdateTotalPrice();
           UpdateOrderList();
-          console.log(OrderArray);
         });
       });
       // Update hidden form

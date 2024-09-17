@@ -91,14 +91,6 @@ def meal_request(request):
     today = timezone.now().date()
     weekday = today.weekday()
     
-    # user_request = Request.objects.filter(user=user, date_created__date=today).first()
-
-    # if user_request:
-    #     user_request_details = RequestDetails.objects.filter(request=user_request)
-    #     context = {'user_request_details': user_request_details,}
-    # else:
-    #     context = {}
-
     on_call = Roster.objects.filter(user=user, date=today).exists()
     
 
@@ -228,9 +220,60 @@ def meal_request_list(request):
     return render(request, 'main/pending_meal_requests.html',context)
 
 
-def approve_meal_request(request,id):
-    user_request = Request.objects.get(id=id)
-    pending_details = RequestDetails.objects.filter(request=user_request, status='Pending')
-    if pending_details.exists():
-        pending_details.update(status='Approved')
-    return redirect('meal_request_list')
+
+def pending_meal_requests(request):
+    requests = Request.objects.filter(status='Pending')
+    context = {'requests': requests}
+    return render(request, 'main/pending_meal_requests.html', context)
+
+
+def approve_meal_request(request, id):
+    user_request = Request.objects.get( id=id)
+    
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        if action == 'approve':
+            if user_request.status != 'Pending':
+                messages.error(request, "This request cannot be approved.")
+                return redirect('pending_meal_requests')
+            
+            user_request.status = 'Approved'
+            messages.success(request, "Request approved successfully.")
+        
+        elif action == 'decline':
+            if user_request.status != 'Pending':
+                messages.error(request, "This request cannot be declined.")
+                return redirect('pending_meal_requests')
+            
+            user_request.status = 'Decline'
+            messages.success(request, "Request declined successfully.")
+        
+        else:
+            messages.error(request, "Invalid action.")
+            return redirect('pending_meal_requests')
+        
+        user_request.save()
+        return redirect('pending_meal_requests')  
+    return redirect('pending_meal_requests')
+
+def update_user_roster(request, id):
+    current_month = timezone.now().month
+    current_year = timezone.now().year
+
+    user = User.objects.get(id=id)
+    user_on_call_dates = list(Roster.objects.filter(user=user, date__month=current_month, date__year=current_year).values_list('date', flat=True))
+    date_to_remove = request.GET.get('remove_date')
+    if date_to_remove:
+        try:
+            date_to_remove = timezone.datetime.strptime(date_to_remove, '%Y-%m-%d').date()
+            if date_to_remove in user_on_call_dates:
+                user_on_call_dates.remove(date_to_remove)
+               
+                Roster.objects.filter(user=user, date=date_to_remove).delete()
+        except ValueError:
+            pass
+        messages.success(request, f"Dates  remove successful for {user.firstname}")
+        return redirect('admin_page')
+    formatted_dates = [date.strftime('%Y-%m-%d') for date in user_on_call_dates]
+    return render(request, 'main/update_user_roster.html', {'user': user, 'user_on_call_dates': formatted_dates})

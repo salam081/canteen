@@ -19,7 +19,6 @@
       $("#clear-button").click(function () {
       Roster.dates = [];
       $(".active-date").removeClass("active-date");
-      console.log(Roster);
       })
       $("#confirm-button").click(function(){
         if (Roster.dates.length === 0) {

@@ -3,14 +3,14 @@
 {% block content %}
 <div class="container-xxl pt-2 pb-3">
     <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <div class="text-center wow" data-wow-delay="0.1s">
             <h3 class="section-title ff-secondary text-center text-primary font-monospace">Request Details</h3>
         </div>
         
-        <div class="row g-5">
+        <div class="row g-3">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th scope="col">S/N</th>
@@ -26,8 +26,8 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ detail.id }}</td>
                                 <td>{{ detail.meal.title }}</td>
-                                <td>{{ detail.meal.price }}</td>
-                                <td>
+                                <td data-price="{{ detail.meal.price }}">{{ detail.meal.price }}</td>
+                                <td class="d-flex justify-content-center align-items-center gap-4">
                                     
                                     <!-- Button trigger modal for Delete -->
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ detail.id }}">Del</button>
@@ -104,4 +104,19 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function calculateTotal() {
+            const priceCells = document.querySelectorAll('td[data-price]');
+            let total = 0;
+            priceCells.forEach(cell => {
+                total += parseFloat(cell.dataset.price);
+            });
+            document.getElementById('totalPrice').innerHTML = '<strong>₦' + total.toFixed(2) + '</strong>';
+        }
+    
+        calculateTotal();
+    });
+    </script>
+    
 {% endblock content %}

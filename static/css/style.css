@@ -30,10 +30,9 @@
   z-index: 1000;
   height: auto; 
   padding: 20px;
-  top: 20%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -20%);
-  border-radius: 50px;
 }
 
 

@@ -123,6 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'

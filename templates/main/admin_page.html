@@ -10,14 +10,13 @@
     <div class="row g-5">
       <div class="card shadow wow" data-wow-delay="0.1s">
         <div class="card-body table-responsive">
-  <table class="table">
+  <table class="table text-center">
     <thead>
         <tr>
             <th scope="col">S/N</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Department</th>
-            <th scope="col">Unit</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -28,19 +27,22 @@
             <td>{{ entry.user.firstname }}</td>
             <td>{{ entry.user.lastname }}</td>
             <td>{{ entry.user.department.title }}</td>
-            <td>{{ entry.user.unit.title }}</td>
             <td>
                 {% if entry.has_dates_selected %}
                     <button class="btn btn-success open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
-                        Update Call Dates
+                            Edit Date
                     </button>
+                    <a class="btn btn-danger" href="{% url 'update_user_roster' id=entry.user.id %}">
+                      Remove Date</a>
+
                 {% else %}
                     <button class="btn btn-primary open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
-                        Select Call Dates
+                            <i class="bi bi-calendar-plus-fill"></i>
+                            Select Dates
                     </button>
                 {% endif %}
             </td>
