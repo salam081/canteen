@@ -109,6 +109,19 @@ footer {
   }
 }
 
+@media (max-width:650px){
+  .img-fluid{
+    flex-shrink: 1;
+  }
+}
+@media (max-width:300px){
+  .chef{
+    /* position: absolute;
+    top: 30%;
+    left: 5%; */
+    display: none;
+  }
+}
 .date-item {
   color: var(--primary) !important;
   background-color: rgb(58, 56, 56);

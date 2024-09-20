@@ -62,23 +62,23 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             if user.group and user.group.title == 'Admin Officer':
-                messages.success(request,f'Welcome  Back {user.username} ')
+                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('admin_page')
             
             elif user.group and user.group.title == 'Canteen manager':
-                messages.success(request,f'Welcome  Back {user.username} ')
+                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('canteen_manager')
             
             elif user.group and user.group.title == 'Developer':
-                messages.success(request,f'Welcome  Back {user.username} ')
+                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('developer_home')
             
             elif user.group and user.group.title == 'Support':
-                messages.success(request,f'Welcome  Back {user.username} ')
+                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('developer_home')
 
             elif user.group and user.group.title == 'User':
-                messages.success(request,f'Welcome  Back {user.username} ')
+                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('meal_request')
             
             else:
@@ -91,7 +91,7 @@ def loginPage(request):
 
 def logoutPage(request):
     logout(request)
-    messages.success(request, 'You have been logged out successfully.')
+    messages.success(request, 'Logged out successfully.')
     return redirect('/')
 
 

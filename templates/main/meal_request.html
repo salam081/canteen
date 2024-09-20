@@ -12,7 +12,7 @@
 <div class="container-xxl d-flex justify-content-center align-items-center">
   <div class="row g-5">
     <div class="text-center wow" data-wow-delay="0.1s">
-      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Food Menu</h3>
+      <h3 class="section-title ff-secondary text-center text-primary font-monospace pt-1"> Our Menu</h3>
     </div>
   
     {% if not on_call %}
@@ -21,22 +21,21 @@
     <div class="card d-flex justify-content-between col-md-10 offset-md-1 shadow wow mt-2 mb-2" data-wow-delay="0.1s">
       <div class="card-body">
         <div class="row g-4">
-          <!-- Menu Section -->
+          <!-- Menu row Section -->
           <div class="col-lg-8 d-flex flex-column mt-5">
             <div class="tab-class text-center wow" data-wow-delay="0.1s">
               <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                <li class="nav-item">
-                  <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill"
-                    href="#tab-1">
+                <!-- <li class="nav-item">
+                  <a class="d-flex align-items-center text-center mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
                     <i class="fa fa-utensils fa-2x text-primary"></i>
                     <div class="ps-3">
-                      <!-- <small class="text-body">Our</small> -->
+                      <small class="text-body">Our</small>
                       <h6 class="mt-n1 mb-0">Menu</h6>
                     </div>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-1">
                     <i class="fa fa-hamburger fa-2x text-primary"></i>
                     <div class="ps-3">
                       <!-- <small class="text-body">Sweet</small> -->
@@ -45,7 +44,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-3">
+                  <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
                     <i class="fa fa-drumstick-bite fa-2x text-primary"></i>
                     <div class="ps-3">
                       <!-- <small class="text-body">Nutricious</small> -->
@@ -54,7 +53,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
+                  <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
                     <i class="fa fa-wine-bottle fa-2x text-primary"></i>
                     <div class="ps-3">
                       <!-- <small class="text-body">Lovely</small> -->
@@ -64,62 +63,21 @@
                 </li>
               </ul>
               <div class="tab-content">
-                <!-- All Meals -->
+               <!-- Food -->
                 <div id="tab-1" class="tab-pane fade show p-0 active">
-                  <div class="menu">
-                    <!-- Inside your existing meal display loops -->
-                    {% for meal in meals %}
-                    <div class="col-10">
-                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
-                        {% if meal.available %}
-                        style="cursor: pointer"
-                        data-id="{{ meal.id }}"
-                        data-title="{{ meal.title }}"
-                        data-price="{{ meal.price }}"
-                        data-category="{{ meal.category }}"
-                        data-url="{{ meal.image.url }}"
-                        {% endif %}>
-                        <img class="flex-shrink-0 img-fluid rounded"
-                          src="{{ meal.image.url }}"
-                          alt=""
-                          style="width: 80px"
-                        />
-                        <div class="w-100 d-flex flex-column text-start ps-4">
-                          <h5
-                            class="d-flex justify-content-between border-bottom pb-2"
-                          >
-                            <span
-                              class="{% if not meal.available %}strikethrough{% endif %}"
-                              >{{ meal.title }}</span
-                            >
-                            <span
-                              class="text-primary {% if not meal.available %}strikethrough{% endif %}"
-                              >&#8358;{{ meal.price }}</span
-                            >
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-
-                <!-- Food Meals-->
-                <div id="tab-2" class="tab-pane fade show p-0 active">
-                  <div class="food-div row">
-                    <!-- Inside your existing meal display loops -->
+                  <div class="food-div row justify-content-center">
                     {% for meal in food_meal %}
-                    <div class="col-10">
-                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}" 
+                    <div class="col-8 d-flex justify-content-center align-items-center mb-3">
+                      <div class="meal w-100 d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}" 
                         {% if meal.available %} style="cursor: pointer" data-id="{{ meal.id }}"
                         data-title="{{ meal.title }}" data-price="{{ meal.price }}" data-category="{{ meal.category }}"
                         data-url="{{ meal.image.url }}" {% endif %}>
-                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
-                          style="width: 80px" />
+                        <img class="flex-grow-1 img-fluid rounded" src="{{ meal.image.url }}" alt="" style="width: 30px" />
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                            <span class="pl-3">&nbsp;-</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
                       </div>
@@ -127,22 +85,22 @@
                     {% endfor %}
                   </div>
                 </div>
-
+                
                 <!-- Protein -->
-                <div id="tab-3" class="tab-pane fade show p-0">
-                  <div class="protein-div row">
+                <div id="tab-2" class="tab-pane fade show p-0">
+                  <div class="protein-div row justify-content-center">
                     {% for meal in protein_meal %}
-                    <div class="col-10">
-                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                    <div class="col-8 d-flex justify-content-center align-items-center mb-3">
+                      <div class="meal w-100 d-flex justify-content-center align-items-center {% if not meal.available %}non-clickable{% endif %}"
                         style="cursor: pointer" data-id="{{ meal.id }}" data-title="{{ meal.title }}"
                         data-price="{{ meal.price }}" data-category="{{ meal.category }}"
                         data-url="{{ meal.image.url }}">
-                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
-                          style="width: 80px" />
+                        <img class="flex-grow-1 img-fluid rounded" src="{{ meal.image.url }}" alt="" style="width: 30px" />
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                            <span class="pl-3">&nbsp;-</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
                       </div>
@@ -151,26 +109,25 @@
                   </div>
                 </div>
 
-                <!-- Drink Meals -->
-                <div id="tab-4" class="tab-pane fade show p-0">
-                  <div class="drink-div row">
+                <!-- Drink -->
+                <div id="tab-3" class="tab-pane fade show p-0">
+                  <div class="drink-div row justify-content-center">
                     {% for meal in drink_meal %}
-                    <div class="col-10">
-                      <div class="meal d-flex align-items-center {% if not meal.available %}non-clickable{% endif %}"
+                    <div class="col-8 d-flex justify-content-center align-items-center mb-3">
+                      <div class="meal w-100 d-flex justify-content-center align-items-center {% if not meal.available %}non-clickable{% endif %}"
                         style="cursor: pointer" data-id="{{ meal.id }}" data-title="{{ meal.title }}"
                         data-price="{{ meal.price }}" data-category="{{ meal.category }}"
                         data-url="{{ meal.image.url }}">
-                        <img class="flex-shrink-0 img-fluid rounded" src="{{ meal.image.url }}" alt=""
-                          style="width: 80px" />
+                        <img class="flex-grow-1 img-fluid rounded" src="{{ meal.image.url }}" alt="" style="width: 30px" />
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&#8358;{{ meal.price }}</span>
+                            <span>&nbsp;-</span>
+                            <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
                       </div>
                     </div>
-
                     {% endfor %}
                   </div>
                 </div>
@@ -193,7 +150,7 @@
                 </h5>
                 <br />
                 <div id="order-list">
-                  <div style="position: absolute; top: 30%; left: 23%">
+                  <div class="chef" style="position: absolute; top: 30%; left: 23%">
                     <img src="/static/img/chef.jpeg" alt="chef image" />
                     <p><i>Start placing your order...</i></p>
                   </div>
@@ -262,40 +219,32 @@
   $('#customAlert').modal('show');
 }
 
-  const priceLimit = 1700; // Set your price limit here
+  let priceLimit = 1700; // Set your price limit here
 
   // Render meals in respective categories
-  let menuDiv = document.querySelector(".menu");
-  let foodDiv = document.querySelector(".food-div")
-  let proteinDiv = document.querySelector(".protein-div");
-  let drinkDiv = document.querySelector(".drink-div");
+  // let foodDiv = document.querySelector(".food-div")
+  // let proteinDiv = document.querySelector(".protein-div");
+  // let drinkDiv = document.querySelector(".drink-div");
 
+  // mealArray.forEach((meal) => {
+  //   let mealDiv = `<div class="col-12">
+  //   <div class="meal w-100 d-flex w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
+  //    <div class="d-flex flex-column text-start ps-4">
+  //       <h5 class="d-flex justify-content-between border-bottom pb-2">
+  //         <span>${meal.title}</span>
+  //         <span class="text-primary">&#8358;${meal.price}</span>
+  //       </h5>
+  //     </div>
+  //   </div>
+  // </div>`;
 
-mealArray.forEach((meal) => {
-  let mealDiv = document.createElement('div');
-  mealDiv.className = 'col-12';
-  mealDiv.innerHTML = `
-    <div class="meal col-sm-12 w-100  w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
-     <div class=" flex-column col-sm-12 text-start ps-4">
-        <h5 class="d-flex justify-content-between border-bottom pb-2">
-          <span>${meal.title}</span>
-          <span class="text-primary">&#8358;${meal.price}</span>
-        </h5>
-      </div>
-    </div>
-  `;
-
-  if (meal.Category === "Food") {
-    foodDiv.appendChild(mealDiv);
-  } else if (meal.Category === "Protein") {
-    proteinDiv.appendChild(mealDiv);
-  } else if (meal.Category === "Drink") {
-    drinkDiv.appendChild(mealDiv);
-  } else {
-    menuDiv.appendChild(mealDiv);
-  }
-});
-
+  //   if (meal.category === "Food") {
+  //     foodDiv.appendChild(mealDiv);
+  //   } else if (meal.category === "Protein") {
+  //     proteinDiv.appendChild(mealDiv);
+  //   } else 
+  //     drinkDiv.appendChild(mealDiv);
+  // });
 
   // Select meals
   document.querySelectorAll(".meal").forEach((mealElement) => {
@@ -375,4 +324,5 @@ mealArray.forEach((meal) => {
     )}</h5>`;
   }
 </script>
+
 {% endblock %}

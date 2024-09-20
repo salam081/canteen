@@ -41,7 +41,7 @@
                 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 custom-toast-container ">
                     {% for message in messages %}
                         <div id="liveToast" class="toast custom-toast alert-{{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header alert-{{ message.tags }}">
+                        <div class="toast-header alert-{{ message.tags }} bg-dark text-primary">
                             <strong class="me-auto"> ✉ Notification</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
