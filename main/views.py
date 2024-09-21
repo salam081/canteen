@@ -22,6 +22,11 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 
+def about(request):
+    return render(request,'main/about.html')
+
+def contact(request):
+    return render(request,'main/contact.html')
 
 def admin_page(request):
     current_user = request.user

@@ -14,8 +14,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-2">
                 <a href="" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">About</a>
-                <a href="" class="nav-item nav-link">Contact</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                 
                 {% if user.is_authenticated and user.group.title == 'Canteen manager'%}
                  <div class="nav-item dropdown">
