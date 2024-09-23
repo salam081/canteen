@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-xxl pt-2 pb-3">
+  <div class="container">
+  <div class="card col-10 bg-dark  mt-4">
+  <div class="card-body">
+      <h3 class='text-center text-primary '>Change Department</h3>   
+    <form method="POST" action="{% url 'update_department' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            
+            <select class="form-select" id="department" name="department">
+                {% for dept in departments %}
+                    <option value="{{ dept.id }}" {% if dept.id == user.department.id %} selected {% endif %}>
+                        {{ dept.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div> 
+        <button type="submit" class="btn btn-primary col-12 mt-3">Update</button>
+    </form>      
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}

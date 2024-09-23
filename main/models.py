@@ -24,8 +24,14 @@ class Meal(models.Model):
         return self.title
 
 class Request(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Decline', 'Decline'),
+    ]
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=8,choices=STATUS_CHOICES,default='Pending')
     
     class Meta:
         verbose_name_plural = "Request"

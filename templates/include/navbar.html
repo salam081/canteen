@@ -3,7 +3,7 @@
         <a href="" class="navbar-brand p-0">
             <h4 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Canteen</h4>
         </a>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user.group.title == 'Developer' or user.group.title == 'Support' %}
           <a href="" class="mx-5"  data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
                 <i class="bi bi-zoom-in"></i>
             </a>
@@ -21,7 +21,7 @@
                  <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Manage Meals</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{% url 'meal_request_list' %}" class="dropdown-item" >Pending Meal List</a>
+                        <a href="{% url 'pending_meal_requests' %}" class="dropdown-item" >Pending Meal List</a>
                         <a href="{% url 'canteen_manager' %}" class="dropdown-item">Update Meals</a>
                        
                     </div>
@@ -50,7 +50,7 @@
                         <div class="dropdown-menu m-0">
                             <a href="" class="dropdown-item"data-bs-toggle="modal" data-bs-target="#profile" >Profile</a>
                             <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_password">Change Password</a>
-                            <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_unit">Change Unit/Dept</a>
+                            <a href="{% url 'update_department' %}" class="dropdown-item">Change Department</a>
                             <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                         </div>
                     </div>

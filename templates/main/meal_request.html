@@ -25,15 +25,6 @@
           <div class="col-lg-8 d-flex flex-column mt-5">
             <div class="tab-class text-center wow" data-wow-delay="0.1s">
               <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                <!-- <li class="nav-item">
-                  <a class="d-flex align-items-center text-center mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                    <i class="fa fa-utensils fa-2x text-primary"></i>
-                    <div class="ps-3">
-                      <small class="text-body">Our</small>
-                      <h6 class="mt-n1 mb-0">Menu</h6>
-                    </div>
-                  </a>
-                </li> -->
                 <li class="nav-item">
                   <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-1">
                     <i class="fa fa-hamburger fa-2x text-primary"></i>
@@ -76,7 +67,7 @@
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span class="pl-3">&nbsp;-</span>
+                            <span class="dash">&nbsp;-</span>
                             <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
@@ -99,7 +90,7 @@
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span class="pl-3">&nbsp;-</span>
+                            <span class="dash">&nbsp;-</span>
                             <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
@@ -122,7 +113,7 @@
                         <div class="w-100 d-flex flex-column text-start ps-4">
                           <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span class="{% if not meal.available %}strikethrough{% endif %}">{{ meal.title }}</span>
-                            <span>&nbsp;-</span>
+                            <span class="dash">&nbsp;-</span>
                             <span class="text-primary {% if not meal.available %}strikethrough{% endif %}">&nbsp;&#8358;{{ meal.price }}</span>
                           </h5>
                         </div>
@@ -219,32 +210,7 @@
   $('#customAlert').modal('show');
 }
 
-  let priceLimit = 1700; // Set your price limit here
-
-  // Render meals in respective categories
-  // let foodDiv = document.querySelector(".food-div")
-  // let proteinDiv = document.querySelector(".protein-div");
-  // let drinkDiv = document.querySelector(".drink-div");
-
-  // mealArray.forEach((meal) => {
-  //   let mealDiv = `<div class="col-12">
-  //   <div class="meal w-100 d-flex w-full align-items-center" style="cursor: pointer" data-id="${meal.id}" data-title="${meal.title}" data-price="${meal.price}" data-category="${meal.category}" data-url="${meal.url}">
-  //    <div class="d-flex flex-column text-start ps-4">
-  //       <h5 class="d-flex justify-content-between border-bottom pb-2">
-  //         <span>${meal.title}</span>
-  //         <span class="text-primary">&#8358;${meal.price}</span>
-  //       </h5>
-  //     </div>
-  //   </div>
-  // </div>`;
-
-  //   if (meal.category === "Food") {
-  //     foodDiv.appendChild(mealDiv);
-  //   } else if (meal.category === "Protein") {
-  //     proteinDiv.appendChild(mealDiv);
-  //   } else 
-  //     drinkDiv.appendChild(mealDiv);
-  // });
+  const priceLimit = 1700; // Set your price limit here
 
   // Select meals
   document.querySelectorAll(".meal").forEach((mealElement) => {

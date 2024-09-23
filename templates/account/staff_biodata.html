@@ -1,82 +1,73 @@
 
 
 <!-- Profile modal starts here -->
-<div class="modal fade" id="profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade bg-dark" id="profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered bg-dark">
       <div class="modal-content bg-dark">
-        <div class="modal-header text-light">
+        <div class="modal-header text-light bg-dark">
           <h3 class="text-primary text-center"> Biodata</h3>
           <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <div class="container wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-dark d-flex align-items-center">
-                      <div class="table table-responsive">
-                        <table class="table table-bordered text-primary">
-                          <tr>
-                            <th width="30%">Username </th>
-                            <td width="2%"></td>
-                            <td>{{user.username}}</td>
-                          </tr>
-                          <tr>
-                            <th width="30%">First Name:</th>
-                            <td width="2%">:</td>
-                            <td>{{user.firstname}}</td>
-                          </tr>
-                          <tr>
-                            <th width="30%">Lastname</th>
-                            <td width="2%">:</td>
-                            <td>{{user.lastname}}</td>
-                          </tr>
-                          <tr>
-                            <th width="30%">Othername</th>
-                            <td width="2%">:</td>
-                            <td>{{user.othername}}</td>
-                          </tr>
-                          <tr>
-                            <th width="30%">File No</th>
-                            <td width="2%">:</td>
-                            <td>{{user.file_no}}</td>
-                          </tr>
-                          <tr>
-                            <th width="30%">Phone</th>
-                            <td width="2%">:</td>
-                            <td>{{user.phone_number}}</td>
-                          </tr>  
-                         <tr>
-                            <th width="30%">Department</th>
-                            <td width="2%">:</td>
-                            <td>{{user.department}}</td>
-                          </tr>  
-                          <tr>
-                            <th width="30%">Unit</th>
-                            <td width="2%">:</td>
-                            <td>{{user.unit}}</td>
-                          </tr>  
-                          <tr>
-                            <th width="30%">Sex</th>
-                            <td width="2%">:</td>
-                            <td>{{user.gender}}</td>
-                          </tr>  
-                          <tr>
-                            <th width="30%">Group</th>
-                            <td width="2%">:</td>
-                            <td>{{user.group}}</td>
-                          </tr>  
-                          <tr>
-                            <th width="30%">Intern</th>
-                            <td width="2%">:</td>
-                            <td>{{user.is_intern}}</td>
-                          </tr>  
-                          <tr>
-                            <th width="30%">Active</th>
-                            <td width="2%">:</td>
-                            <td>{{user.is_active}}</td>
-                          </tr>  
-                        </table> 
-                      </div> 
-                       
+        <div class="modal-body bg-dark text-primary">
+           <div class="container wow" data-wow-delay="0.1s">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                {% if user.gender.title == 'male' %}
+                  <img class="rounded-circle mt-5" width="150px" src="/static/img/male.jpg">
+                {% else  %}
+                  <img class="rounded-circle mt-5" width="150px" src="/static/img/female.jpeg">
+                {% endif %}
                 </div>
+                <div class="col-8 m-1 py-3 pl-5">
+                  <table>
+                    <tr>
+                      <th>First Name</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.firstname}}</td>
+                    </tr>
+                    <tr>
+                      <th>Last Name</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.lastname}}</td>
+                    </tr>
+                    <tr>
+                      <th>Other Name</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.othernames}}</td>
+                    </tr>
+                    <tr>
+                      <th>File No</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.file_no}}</td>
+                    </tr>
+                    <tr>
+                      <th>Username</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.username}}</td>
+                    </tr>
+                    <tr>
+                      <th>Gender</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.gender}}</td>
+                    </tr>
+                    <tr>
+                      <th>Department</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.department}}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.phone_number}}</td>
+                    </tr>
+                    <tr>
+                      <th>Department</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.department}}</td>
+                    </tr>
+                </table>
+                </div>
+              </div>
             </div>
         </div>
       </div>

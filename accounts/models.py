@@ -38,6 +38,14 @@ class UserGroup(models.Model):
     def __str__(self):
         return self.title
 
+class Role(models.Model):
+    title = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "role"
+
+    def __str__(self):
+        return self.title   
 
 class User(AbstractUser):
     firstname = models.CharField(max_length=200)
@@ -50,7 +58,7 @@ class User(AbstractUser):
     unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True)
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     group = models.ForeignKey(UserGroup, on_delete=models.CASCADE, blank=True, null=True)
-    is_intern = models.BooleanField(default=False)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
 

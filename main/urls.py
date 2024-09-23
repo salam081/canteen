@@ -16,7 +16,6 @@ urlpatterns = [
     path('edit_meal_request/<str:id>/', views.edit_meal_request, name="edit_meal_request"), 
     path('delete_meal_request/<str:id>/', views.delete_meal_request, name="delete_meal_request"), 
 
-    path('meal_request_list',views.meal_request_list, name='meal_request_list'),
     path('pending_meal_requests',views.pending_meal_requests, name='pending_meal_requests'),
     path('approve_meal_request/<int:id>/', views.approve_meal_request, name='approve_meal_request'),
     path('update_user_roster/<str:id>/', views.update_user_roster, name='update_user_roster'),

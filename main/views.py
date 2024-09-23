@@ -18,7 +18,8 @@ def index(request):
     departments = Department.objects.all()
     units = Unit.objects.all()
     genders = Gender.objects.all()
-    context = {'departments':departments,'units':units,'genders':genders}
+    roles = Role.objects.all()
+    context = {'departments':departments,'units':units,'genders':genders, 'roles':roles}
     return render(request, 'main/index.html', context)
 
 
@@ -31,7 +32,8 @@ def contact(request):
 def admin_page(request):
     current_user = request.user
     current_date = timezone.now().date()
-
+    current_month = timezone.now().month
+    current_year = timezone.now().year
     dates_selected = Roster.objects.filter(user=current_user, date=current_date).exists()
     users = User.objects.none()
     if current_user.department: #and current_user.unit:
@@ -39,7 +41,7 @@ def admin_page(request):
     
     users_with_status = []
     for user in users:
-        has_dates_selected = Roster.objects.filter(user=user, date=current_date).exists()
+        has_dates_selected = Roster.objects.filter(user=user, date__month=current_month, date__year=current_year).exists()
         users_with_status.append({'user': user,'has_dates_selected': has_dates_selected})
     context = {'users_with_status': users_with_status, 'dates_selected': dates_selected}
     
@@ -219,16 +221,10 @@ def delete_meal_request(request, id):
     return redirect('meal_request_details')
 
 
-def meal_request_list(request):
-    requests = Request.objects.all()
-    context = {'requests': requests}
-    return render(request, 'main/pending_meal_requests.html',context)
-
-
-
 def pending_meal_requests(request):
-    requests = Request.objects.filter(status='Pending')
-    context = {'requests': requests}
+    today = timezone.now().date()
+    requests = Request.objects.filter(date_created__date=today, status='Pending')
+    context = {'requests': requests,'today':today}
     return render(request, 'main/pending_meal_requests.html', context)
 
 

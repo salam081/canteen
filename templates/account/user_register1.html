@@ -1,0 +1,124 @@
+<div class="modal fade" id="register"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-dark d-flex align-items-center">
+                        <div class="p-1 wow fadeInUp" data-wow-delay="0.2s">
+                            <!-- <h5 class="section-title  justify-content-center text-primary fw-normal">Canteen App</h5> -->
+                            <h3 class="text-center ff-secondary text-primary fw-normal mb-4">User Registration</h3>
+                            {% for msg in messages %}
+            <p class="text-center">{{msg}}</p>
+    {% endfor %}
+                            <form method="POST" action="{% url 'register' %}">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="firstname" placeholder="First Name">
+                                            <label for="name">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="othername" placeholder="Other Name">
+                                            <label for="name">Other Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="lastname" placeholder="Last Name">
+                                            <label for="name">Last Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="username" placeholder="Last Name">
+                                            <label for="username">UserName</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="file_no" placeholder="File Number">
+                                            <label for="name">File Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Phone No">
+                                            <label for="">Phone No</label>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="department" name="department">
+                                                <option selected disabled value="">Select Department</option>
+                                                {% for department in departments %}
+                                                <option value="{{ department.id }}">{{ department.title }}</option>
+                                            {% endfor %}
+                                            </select>
+                                            <!-- <label for="select1">Department</label> -->
+                                          </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="unit" name="unit">
+                                                <option selected disabled value="">Select Unit</option>
+                                                {% for unit in units %}
+                                                <option value="{{ unit.id }}">{{ unit.title }}</option>
+                                               {% endfor %}
+                                            </select>
+                                            <!-- <label for="select1">Unit</label> -->
+                                          </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="gender" name="gender">
+                                                <option selected disabled value="">Select Gender</option>
+                                                {% for gender in genders %}
+                                                <option value="{{ gender.id }}">{{ gender.title }}</option>
+                                            {% endfor %}
+                                            </select>
+                                            <!-- <label for="select1">Gender</label> -->
+                                          </div>
+                                    </div>
+                                    
+                                
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                                            <label for="password">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
+                                            <label for="password">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="row my-3">
+                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                                            <label for="intern" class="me-2">Intern?</label>
+                                            <input type="checkbox" id="is_intern" name="is_intern">
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                                            <label for="active" class="me-2">Active?</label>
+                                            <input type="checkbox" id="active" name="active">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

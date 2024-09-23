@@ -6,10 +6,56 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import *
 
+# def registerPage(request):
+#     departments = Department.objects.all()
+#     units = Unit.objects.all()
+#     genders = Gender.objects.all() 
+#     if request.method == 'POST':
+#         firstname = request.POST.get('firstname')
+#         lastname = request.POST.get('lastname')
+#         othername = request.POST.get('othername')
+#         username = request.POST.get('username')
+#         file_no = request.POST.get('file_no')
+#         phone_number = request.POST.get('phone_number')
+#         department = request.POST.get('department')
+#         unit = request.POST.get('unit')
+#         gender = request.POST.get('gender')
+#         is_intern = request.POST.get('is_intern') == 'on'
+#         password1 = request.POST.get('password1')
+#         password2 = request.POST.get('password2')
+
+#         if password1 != password2:
+#             messages.error(request, 'Passwords do not match')
+#             return render(request, 'index.html', {'departments': departments, 'units': units})
+
+#         if User.objects.filter(username=username).exists():
+#             messages.error(request, 'Username already exists')
+#             return render(request, 'index.html', {'departments': departments, 'units': units})
+        
+#         if User.objects.filter(file_no=file_no).exists():
+#             messages.error(request, 'File No. already exists')
+#             return render(request, 'index.html', {'departments': departments, 'units': units})
+
+#         user_group = UserGroup.objects.get(title='user')
+
+#         user = User.objects.create(
+#             firstname=firstname,lastname=lastname,othername=othername,
+#             username=username,file_no=file_no,phone_number=phone_number,
+#             department_id=department,unit_id=unit,gender_id=gender,group=user_group,
+#             is_intern=is_intern,password=make_password(password1)
+#         )
+        
+#         messages.success(request, 'User registration successful')
+#         return redirect('/')
+   
+#     context = {'departments':departments,'units':units,'genders':genders}
+#     return render(request, 'account/user_register.html', context)
+
 def registerPage(request):
     departments = Department.objects.all()
     units = Unit.objects.all()
-    genders = Gender.objects.all() 
+    genders = Gender.objects.all()
+    roles = Role.objects.all() 
     if request.method == 'POST':
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
@@ -20,37 +66,37 @@ def registerPage(request):
         department = request.POST.get('department')
         unit = request.POST.get('unit')
         gender = request.POST.get('gender')
-        is_intern = request.POST.get('is_intern') == 'on'
+        role = request.POST.get('role')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
         if password1 != password2:
             messages.error(request, 'Passwords do not match')
-            return render(request, 'index.html', {'departments': departments, 'units': units})
+            return render(request, 'account/index.html', {'departments': departments, 'units': units})
 
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already exists')
-            return render(request, 'index.html', {'departments': departments, 'units': units})
+            return render(request, 'account/index.html', {'departments': departments, 'units': units})
         
         if User.objects.filter(file_no=file_no).exists():
             messages.error(request, 'File No. already exists')
-            return render(request, 'index.html', {'departments': departments, 'units': units})
+            return render(request, 'account/index.html', {'departments': departments, 'units': units})
 
-        user_group = UserGroup.objects.get(title='user')
+        user_group = UserGroup.objects.get(title='User')
 
         user = User.objects.create(
             firstname=firstname,lastname=lastname,othername=othername,
             username=username,file_no=file_no,phone_number=phone_number,
             department_id=department,unit_id=unit,gender_id=gender,group=user_group,
-            is_intern=is_intern,password=make_password(password1)
+            role_id=role,password=make_password(password1)
+
         )
         
         messages.success(request, 'User registration successful')
         return redirect('/')
    
-    context = {'departments':departments,'units':units,'genders':genders}
+    context = {'departments':departments,'units':units,'genders':genders,'roles':roles}
     return render(request, 'account/user_register.html', context)
-
 
 def loginPage(request):
     if request.method == 'POST':
@@ -159,3 +205,15 @@ def staff_biodata(requuest,id):
     user = requuest.user
     user_id = User.objects.get(id=id)
     return render(requuest,'account/staff_biodata.html',{'user_id':user_id,'user':user})
+
+def update_department(request):
+    user=User.objects.get(id=request.user.id)
+    departments = Department.objects.all().order_by('title')
+    # units=Unit.objects.filter(department_id=user.department.id).order_by('title')
+    if request.method=='POST':
+        # User.objects.filter(id=request.user.id).update(unit_id=request.POST.get('unit'))
+        User.objects.filter(id=request.user.id).update(department_id=request.POST.get('department'))
+        messages.success(request,"Thanks, your day is blessed!")
+        return redirect('update_department')
+    context={"user":user,'departments':departments}#"units":units
+    return render(request,'account/update_department.html',context)
