@@ -64,7 +64,7 @@ def canteen_manager(request):
             meal = get_object_or_404(Meal, id=meal_id)
             meal.available = not meal.available
             meal.save()
-            messages.success(request, 'Meal  updated successfully')
+            messages.success(request, 'Meal updated successfully')
             return redirect('canteen_manager')
 
         # Editing  meal logic
@@ -89,7 +89,7 @@ def canteen_manager(request):
 def delete_meal(request,id):
     delete_meal = Meal.objects.get(id=id)
     delete_meal.delete()
-    messages.success(request,'Meal Deleted  successfully')
+    messages.success(request,'Meal deleted successfully')
     return redirect('canteen_manager')
 
 
@@ -112,7 +112,7 @@ def meal_request(request):
             # Monday to Friday
             if weekday < 5:  
                 if requests_today.exists():
-                    messages.error(request, 'You can only make one meal request per day .')
+                    messages.error(request, 'You can only make one meal request per day.')
                     return redirect('meal_request')
             else:  # Saturday and Sunday
                 if requests_today.count() >= 2:
@@ -217,7 +217,7 @@ def delete_meal_request(request, id):
     user = request.user
     requestObj = RequestDetails.objects.get(id=id)
     requestObj.delete()
-    messages.success(request,'Meal Deleted Successfully')
+    messages.success(request,'Meal deleted successfully')
     return redirect('meal_request_details')
 
 
@@ -274,7 +274,7 @@ def update_user_roster(request, id):
                 Roster.objects.filter(user=user, date=date_to_remove).delete()
         except ValueError:
             pass
-        messages.success(request, f"Dates  remove successful for {user.firstname}")
+        messages.success(request, f"Date removed successfully for {user.firstname}")
         return redirect('admin_page')
     formatted_dates = [date.strftime('%Y-%m-%d') for date in user_on_call_dates]
     return render(request, 'main/update_user_roster.html', {'user': user, 'user_on_call_dates': formatted_dates})

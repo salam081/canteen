@@ -10,14 +10,13 @@
   }
 </style>
 <div class="container-xxl d-flex justify-content-center align-items-center">
+  {% if not on_call %}
+  <h3 class="text-primary text-center mt-5">You are not on call today contact your Admin in your unit.</h3>
+  {% else %}
   <div class="row g-5">
     <div class="text-center wow" data-wow-delay="0.1s">
       <h3 class="section-title ff-secondary text-center text-primary font-monospace">Our Menu</h3>
     </div>
-  
-    {% if not on_call %}
-    <h3 class="text-primary text-center">You are not on call today contact your Admin in your unit.</h3>
-    {% else %}
     <div class="card d-flex justify-content-between col-md-10 offset-md-1 shadow wow mt-2 mb-2" data-wow-delay="0.1s">
       <div class="card-body">
         <div class="row g-4">
@@ -199,6 +198,8 @@
 </div>
 
 <script>
+  const priceLimit = 1700; // Set price limit here
+
   let OrderArray = [];
   let mealArray = [
     // Meal data here
@@ -210,7 +211,6 @@
   $('#customAlert').modal('show');
 }
 
-  const priceLimit = 1700; // Set your price limit here
 
   // Select meals
   document.querySelectorAll(".meal").forEach((mealElement) => {

@@ -1,13 +1,11 @@
-<div class="container-xxl position-relative p-0">
+<div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-3 py-3 py-lg-0">
         <a href="" class="navbar-brand p-0">
             <h4 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Canteen</h4>
         </a>
-        {% if user.is_authenticated and user.group.title == 'Developer' or user.group.title == 'Support' %}
           <a href="" class="mx-5"  data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
                 <i class="bi bi-zoom-in"></i>
             </a>
-            {% endif %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
@@ -48,7 +46,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i>{{request.user.username}}</a>
                         <div class="dropdown-menu m-0">
-                            <a href="" class="dropdown-item"data-bs-toggle="modal" data-bs-target="#profile" >Profile</a>
+                            <a href="" class="dropdown-item"data-bs-toggle="modal" data-bs-target="#profile" >My Profile</a>
                             <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change_password">Change Password</a>
                             <a href="{% url 'update_department' %}" class="dropdown-item">Change Department</a>
                             <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
@@ -67,7 +65,7 @@
         </div>
     </nav>
         
-    <div class="container-xxl py-5 bg-dark supporting-container">
+    <div class="container-fluid py-5 bg-dark supporting-container">
         <div class="container my-1 py-1">
             <div class="row align-items-center g-5">
             </div>

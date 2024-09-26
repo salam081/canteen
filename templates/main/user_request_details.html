@@ -2,10 +2,10 @@
 
 {% block content %}
 <div class="container-xxl pt-2 pb-3">
-    <div class="container">
-        <div class="text-center wow" data-wow-delay="0.1s">
-            <h3 class="section-title ff-secondary text-center text-primary font-monospace">My Request Details</h3>
-        </div>
+    <div class="text-center wow mb-2" data-wow-delay="0.1s">
+        <h3 class="section-title ff-secondary text-center text-primary font-monospace">My Request Details</h3>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center">
         <div class="row g-3">
             <div class="card">
                 <div class="card-body table-responsive">
@@ -30,7 +30,7 @@
                                 <td class="d-flex justify-content-center align-items-center gap-4">
                                     
                                     <!-- Button trigger modal for Delete -->
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ detail.id }}">Del</button>
+                                    <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ detail.id }}">Del</button> -->
 
 
                                     <!-- Button trigger modal for Edit -->
@@ -126,13 +126,13 @@
       </div>
   </div>
 {% endfor %}
-<script>
+<!-- <script>
     const priceLimit = 1700;
 
     function showCustomAlert(message) {
-  $('#alertMessage').text(message);
-  $('#customAlert').modal('show');
-}
+        $('#alertMessage').text(message);
+        $('#customAlert').modal('show');
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
         function calculateTotal() {
@@ -142,14 +142,42 @@
                 total += parseFloat(cell.dataset.price);
             });
             document.getElementById('totalPrice').innerHTML = '<strong>₦' + total.toFixed(2) + '</strong>';
+            
             if (total > priceLimit) {
-                showCustomAlert(`Adding this meal exceeds the price limit of ₦${priceLimit}.`)
+                showCustomAlert(`Total price (₦${total.toFixed(2)}) exceeds the limit of ₦${priceLimit}.`);
             }
         }
     
         calculateTotal();
+
+        // Add event listeners to edit buttons
+        const editButtons = document.querySelectorAll('.btn-warning');
+        editButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-bs-target');
+                const modal = document.querySelector(modalId);
+                
+                // Add event listener to the form submit
+                const form = modal.querySelector('form');
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Calculate new total
+                    const newMealPrice = parseFloat(form.querySelector('select').selectedOptions[0].getAttribute('data-price'));
+                    const currentTotal = parseFloat(document.getElementById('totalPrice').textContent.replace('₦', ''));
+                    const newTotal = currentTotal + newMealPrice;
+                    
+                    if (newTotal > priceLimit) {
+                        showCustomAlert(`Adding this meal would exceed the price limit of ₦${priceLimit}.`);
+                    } else {
+                        form.submit();
+                    }
+                });
+            });
+        });
     });
-</script>
+</script> -->
+
     
 
 

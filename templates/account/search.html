@@ -3,15 +3,16 @@
 {% block content%}
 
 <!-- Table for search starts here -->
-<div class="container-xxl pt-2 pb-3 mt-2 d-flex justify-content-center align-items-center text-center">
+<div class="container-xxl pt-2 pb-3">
   <div class="container">
     <div class="text-center wow" data-wow-delay="0.1s">
-      <h3 class="section-title ff-secondary text-primary font-monospace">Registered Users</h3>
+      <h3 class="section-title ff-secondary text-center text-primary  font-monospace">Users</h3>
     </div>
-    <div class="row g-3">
+    <div class="row g-5">
       <div class="card shadow wow" data-wow-delay="0.1s">
         <div class="card-body table-responsive">
-          <table class="table table p-20">
+          {% if users %}
+          <table class="table table">
             <thead>
               <tr>
                 <th scope="col">S/N</th>
@@ -20,7 +21,6 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Username</th>
                 <th scope="col">Department</th>
-                <th scope="col">Unit</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -34,16 +34,13 @@
                 <td>{{user.lastname}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.department}}</td>
-                <td>{{user.unit}}</td>
                 <td>
 
                   <div class="nav-item dropdown dropdown-container">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fas fa-pencil-alt"></i></a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-pencil-alt"></i></a>
                     <div class="search-user dropdown-menu m-0">
                       <a href="{% url 'reset_password' user.id %}" class="dropdown-item">Reset Password</a>
-                      <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#assign_group">Assign
-                        Group</a>
+                      <a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#assign_group">Assign Group</a>
                     </div>
                   </div>
                 </td>
@@ -94,7 +91,9 @@
               <!-- Assign User to Group starts here -->
             </tbody>
           </table>
-
+          {% else %}
+          <h3 class="text-center">Your search did not yield any results</h3>
+          {% endif %}
         </div>
       </div>
 
@@ -104,9 +103,4 @@
   </div>
 </div>
 <!-- Search table ends here -->
-
-
-
-
-
 {% endblock content%}

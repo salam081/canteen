@@ -3,11 +3,11 @@
 {% block content %}
 
 <div class="container-xxl pt-2 pb-3">
-  <div class="container">
-    <div class="text-center wow" data-wow-delay="0.1s">
-      <h3 class="section-title ff-secondary text-center text-primary font-monospace">Registered Users</h3>
-    </div>
-    <div class="row g-5">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="row g-3">
+      <div class="text-center wow" data-wow-delay="0.1s">
+        <h3 class="section-title ff-secondary text-center text-primary font-monospace">Registered users in {{user.department.title}}</h3>
+      </div>
       <div class="card shadow wow" data-wow-delay="0.1s">
         <div class="card-body table-responsive">
   <table class="table text-center">
@@ -28,23 +28,29 @@
             <td>{{ entry.user.lastname }}</td>
             <td>{{ entry.user.department.title }}</td>
             <td>
+              <div class="d-flex justify-content-center align-items-center gap-2">
                 {% if entry.has_dates_selected %}
-                    <button class="btn btn-success open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
+                    <button class="btn btn-info open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
                             data-user-first-name="{{ entry.user.firstname }}" 
                             data-user-last-name="{{ entry.user.lastname }}">
-                            Edit Date
+                            Add Date
                     </button>
-                    <a class="btn btn-danger" href="{% url 'update_user_roster' id=entry.user.id %}">
+                    <a class="btn btn-danger removeButton" href="{% url 'update_user_roster' id=entry.user.id %}">
                       Remove Date</a>
 
                 {% else %}
-                    <button class="btn btn-primary open-calendar" data-bs-toggle="modal" data-bs-target="#calendarModal" data-user-id="{{ entry.user.id }}" 
-                            data-user-first-name="{{ entry.user.firstname }}" 
-                            data-user-last-name="{{ entry.user.lastname }}">
-                            <i class="bi bi-calendar-plus-fill"></i>
-                            Select Dates
-                    </button>
+                   <button class="btn btn-primary open-calendar d-flex align-items-center justify-content-center" 
+        data-bs-toggle="modal" 
+        data-bs-target="#calendarModal" 
+        data-user-id="{{ entry.user.id }}" 
+        data-user-first-name="{{ entry.user.firstname }}" 
+        data-user-last-name="{{ entry.user.lastname }}">
+    <i class="bi bi-calendar-plus-fill me-2"></i>
+    <span class="button-text">Select Dates</span>
+</button>
+
                 {% endif %}
+              </div>
             </td>
         </tr>
         {% empty %}

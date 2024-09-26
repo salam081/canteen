@@ -7,7 +7,7 @@
       <div class="call-container">
         {%  if user_on_call_dates %}
         {% for date in user_on_call_dates %}
-          <button class=" g-3 p-3 m-1 border-0 offset-1 date-item">
+          <button class=" g-3 p-2 m-1 border-0 offset-1 date-item">
             {{ date }}
             <a class="text-danger" href="{% url 'update_user_roster' user.id %}?remove_date={{ date }}"><br> <i class="fas fa-trash-alt"></i></i>{{ 'Remove' }}</a>
           </button>

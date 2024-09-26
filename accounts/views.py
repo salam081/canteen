@@ -107,34 +107,30 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, f'Welcome Back {user.username}')
+
             if user.group and user.group.title == 'Admin Officer':
-                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('admin_page')
             
             elif user.group and user.group.title == 'Canteen manager':
-                messages.success(request,f'Welcome back {user.username} ')
-                return redirect('canteen_manager')
+                return redirect('pending_meal_requests')
             
             elif user.group and user.group.title == 'Developer':
-                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('developer_home')
             
             elif user.group and user.group.title == 'Support':
-                messages.success(request,f'Welcome back {user.username} ')
                 return redirect('developer_home')
-
-            elif user.group and user.group.title == 'User':
-                messages.success(request,f'Welcome back {user.username} ')
-                return redirect('meal_request')
             
+            elif user.group and user.group.title == 'User':
+                return redirect('meal_request')
             else:
                 return redirect('main/index.html')
         else:
             messages.error(request, 'Invalid username or password')
+            return redirect('index') 
 
     return render(request, 'main/index.html')
-
-
+       
 def logoutPage(request):
     logout(request)
     messages.success(request, 'Logged out successfully.')

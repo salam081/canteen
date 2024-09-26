@@ -11,5 +11,5 @@ urlpatterns = [
     path('change_password/', views.changePassword, name="change_password"),
     path('reset_password/<int:id>/', views.resetPassword, name='reset_password'),
     path('staff_biodata/<int:id>/', views.staff_biodata, name='staff_biodata'),
-    path('update_department', views.update_department, name='update_department'),
+    path('update_department/', views.update_department, name='update_department'),
 ]

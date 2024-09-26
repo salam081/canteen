@@ -13,6 +13,30 @@
   opacity: 1;
 }
 
+.open-calendar {
+  white-space: nowrap;
+  min-width: 150px; /* Adjust this value as needed */
+}
+
+.open-calendar .button-text {
+  display: inline-block;
+}
+
+.removeButton{
+  white-space: nowrap;
+  min-width: 150px;
+}
+
+.removeButton .button-text{
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .open-calendar {
+    font-size: 0.9rem; /* Reduce font size slightly on very small screens */
+  }
+}
+
 .dropdown-container {
   position: relative;
 }
@@ -40,12 +64,12 @@
   height: 100%;
 }
 
-.dash{
+.dash {
   display: none;
 }
 
-@media screen and (max-width:571px){
-  .dash{
+@media screen and (max-width: 571px) {
+  .dash {
     display: block;
   }
 }
