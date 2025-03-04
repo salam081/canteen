@@ -51,16 +51,17 @@ class User(AbstractUser):
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
     othername = models.CharField(max_length=100 ,blank=True,null=True)
-    username = models.CharField(max_length=100, unique=True)  # Ensure username is unique
+    username = models.CharField(max_length=100, unique=True) 
     file_no = models.CharField(unique=True, max_length=7)
-    phone_number = models.CharField(max_length=11)
+    phone_number = models.CharField(max_length=11,null=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE,null=True)
     group = models.ForeignKey(UserGroup, on_delete=models.CASCADE, blank=True, null=True)
     role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['firstname', 'lastname', 'file_no', 'phone_number', 'department', 'unit']

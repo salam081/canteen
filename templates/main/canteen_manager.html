@@ -12,9 +12,11 @@
                         <div class="mx-auto">
                             <h3 class="section-title ff-secondary text-center text-primary font-monospace">Available Meals</h3>
                         </div>
+                        {% if user.is_authenticated and user.group.title == 'Support' or user.group.title == 'Developer'  %}
                         <div>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMealModal">Add Meal</button>
                         </div>
+                        {% endif %}
                       </div>
                     <table class="table">
                         <thead>
@@ -47,10 +49,10 @@
                             </td>
                             <td class="d-flex">
                                 <button class="btn btn-sm btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editMealModal{{ meal.id }}" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                {% if user.is_authenticated and user.group.title == 'Support' or user.group.title == 'Developer' %}
                                 <a href="{% url 'delete_meal' meal.id %}" class="btn btn-sm btn-danger" title="Delete"
-                                onclick="return confirmDelete();">
-                                <i class="fas fa-trash-alt"></i>
-                             </a>
+                                onclick="return confirmDelete();"> <i class="fas fa-trash-alt"></i></a>
+                             {% endif %}
                             </td>
                           </tr>
 
@@ -69,7 +71,7 @@
                                               <div class="row g-3">
                                                   <div class="col-md-6 col-sm-6">
                                                       <div class="form-floating">
-                                                          <input type="text" class="form-control" id="edit_title_{{ meal.id }}" name="title" value="{{ meal.title }}">
+                                                          <input type="text" class="form-control" id="edit_title_{{ meal.id }}" name="title" value="{{ meal.title }}" readonly>
                                                           <label for="edit_title_{{ meal.id }}">Meal Name</label>
                                                       </div>
                                                   </div>
@@ -80,15 +82,17 @@
                                                       </div>
                                                   </div>
                                                   <div class="col-md-12 col-sm-6">
-                                                      <div class="form-floating">
-                                                          <select class="form-select" id="edit_category_{{ meal.id }}" name="category">
-                                                              {% for i in category %}
-                                                                  <option value="{{ i.id }}" {% if meal.category.id == i.id %}selected{% endif %}>{{ i.title }}</option>
-                                                              {% endfor %}
-                                                          </select>
-                                                          <label for="edit_category_{{ meal.id }}">Category</label>
-                                                      </div>
-                                                  </div>
+                                                    <div class="form-floating">
+                                                        <select class="form-select" id="edit_category_{{ meal.id }}" name="category" disabled>
+                                                            {% for i in category %}
+                                                                <option value="{{ i.id }}" {% if meal.category.id == i.id %}selected{% endif %}>{{ i.title }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <input type="hidden" name="category" value="{{ meal.category.id }}">
+                                                        <label for="edit_category_{{ meal.id }}">Category</label>
+                                                    </div>
+                                                </div>
+                                                
                                                   <div class="col-12">
                                                       <button class="btn btn-primary w-100 py-3" type="submit">Update Meal</button>
                                                   </div>

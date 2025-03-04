@@ -8,7 +8,7 @@
           <h3 class="text-primary text-center">Profile</h3>
           <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body bg-dark text-primary">
+        <div class="modal-body bg-light text-primary">
            <div class="container wow" data-wow-delay="0.1s">
               <div class="row justify-content-center align-items-center">
                 <div class="col-md-4 text-center mb-3 mb-md-0">
@@ -23,7 +23,7 @@
                     <tr>
                       <th>First Name</th>
                       <td>:</td>
-                      <td>&nbsp;{{user.firstname}}</td>
+                      <td>{{user.firstname}}</td>
                     </tr>
                     <tr>
                       <th>Last Name</th>
@@ -49,6 +49,11 @@
                       <th>Gender</th>
                       <td>:</td>
                       <td>&nbsp;{{user.gender}}</td>
+                    </tr>
+                    <tr>
+                      <th>User Group</th>
+                      <td>:</td>
+                      <td>&nbsp;{{user.group}}</td>
                     </tr>
                     <tr>
                       <th>Department</th>

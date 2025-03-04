@@ -1,138 +1,13 @@
-{% comment %} <div class="modal fade" id="register"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="modal-header">
-          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="container wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-dark d-flex align-items-center">
-                        <div class="p-1 wow fadeInUp" data-wow-delay="0.2s">
-                            <!-- <h5 class="section-title  justify-content-center text-primary fw-normal">Canteen App</h5> -->
-                            <h3 class="text-center  ff-secondary text-primary fw-normal mb-4">User Registration</h3>
-                            {% for msg in messages %}
-            <p class="text-center">{{msg}}</p>
-    {% endfor %}
-                            <form method="POST" action="{% url 'register' %}">
-                                {% csrf_token %}
-                                <div class="row g-3">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="firstname" placeholder="First Name">
-                                            <label for="name">First Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="othername" placeholder="Other Name">
-                                            <label for="name">Other Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="lastname" placeholder="Last Name">
-                                            <label for="name">Last Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="username" placeholder="Last Name">
-                                            <label for="username">UserName</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="file_no" placeholder="File Number">
-                                            <label for="name">File Number</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Phone No">
-                                            <label for="">Phone No</label>
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="department" name="department">
-                                                <option selected disabled value="">Select Department</option>
-                                                {% for department in departments %}
-                                                <option value="{{ department.id }}">{{ department.title }}</option>
-                                            {% endfor %}
-                                            </select>
-                                            <!-- <label for="select1">Department</label> -->
-                                          </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="unit" name="unit">
-                                                <option selected disabled value="">Select Unit</option>
-                                                {% for unit in units %}
-                                                <option value="{{ unit.id }}">{{ unit.title }}</option>
-                                               {% endfor %}
-                                            </select>
-                                            <!-- <label for="select1">Unit</label> -->
-                                          </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="gender" name="gender">
-                                                <option selected disabled value="">Select Gender</option>
-                                                {% for gender in genders %}
-                                                <option value="{{ gender.id }}">{{ gender.title }}</option>
-                                            {% endfor %}
-                                            </select>
-                                            <!-- <label for="select1">Gender</label> -->
-                                          </div>
-                                    </div>
-                                    
-                                
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
-                                            <label for="password">Password</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
-                                            <label for="password">Confirm Password</label>
-                                        </div>
-                                    </div>
-                                    <div class="row my-3">
-                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
-                                            <label for="intern" class="me-2">Intern?</label>
-                                            <input type="checkbox" id="is_intern" name="is_intern">
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
-                                            <label for="active" class="me-2">Active?</label>
-                                            <input type="checkbox" id="active" name="active">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> 
-                </div>
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endcomment %}
-
-
-  <div class="modal fade" id="register"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="modal-header">
-          <button type="button" class="btn-close bg-primary" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="container wow fadeInUp" data-wow-delay="0.1s">
+            <div class="modal-body">
+                <div class="container wow fadeInUp" data-wow-delay="0.1s">
                     <div class="bg-dark d-flex align-items-center">
                         <div class="p-1 wow fadeInUp" data-wow-delay="0.2s">
                             <h5 class="mt-2 ff-secondary text-center text-primary fw-normal">User Registration</h5>
@@ -141,115 +16,140 @@
                                 <div class="row g-3">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="firstname" placeholder="First Name">
+                                            <input type="text" class="form-control" id="name" name="firstname"
+                                                placeholder="First Name" required>
                                             <label for="name">First Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="othername" placeholder="Other Name">
-                                            <label for="name">Other Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="lastname" placeholder="Last Name">
+                                            <input type="text" class="form-control" id="name" name="lastname"
+                                                placeholder="Last Name" required>
                                             <label for="name">Last Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="username" placeholder="Last Name">
-                                            <label for="username">UserName</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="file_no" placeholder="File Number">
-                                            <label for="name">File Number</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Phone No">
-                                            <label for="">Phone No</label>
+                                            <input type="text" class="form-control" id="name" name="othername"
+                                                placeholder="Other Name" >
+                                            <label for="name">Other Name</label>
                                         </div>
                                     </div>
                                    
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="department" name="department">
+                                            <input type="text" class="form-control" id="name" name="username"
+                                                placeholder="Last Name" required>
+                                            <label for="username">UserName</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="file_no"
+                                                placeholder="File Number" required>
+                                            <label for="name">File Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="phone_number"
+                                                name="phone_number" placeholder="Phone No" required>
+                                            <label for="">Phone No</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="department" name="department" required>
+                                                <option></option>
                                                 {% for department in departments %}
                                                 <option value="{{ department.id }}">{{ department.title }}</option>
-                                            {% endfor %}
+                                                {% endfor %}
                                             </select>
-                                            <label for="select1">Department</label>
-                                          </div>
+                                            <label for="select1">Select Department</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="unit" name="unit">
+                                            <select class="form-select" id="unit" name="unit" >
+                                                <option></option>
                                                 {% for unit in units %}
                                                 <option value="{{ unit.id }}">{{ unit.title }}</option>
-                                               {% endfor %}
+                                                {% endfor %}
                                             </select>
-                                            <label for="select1">Unit</label>
-                                          </div>
+                                            <label for="select1"> Select Unit</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="Gender" name="gender">
-                                            <option></option>
+                                            <select class="form-select" id="Gender" name="gender" required>
+                                                <option></option>
                                                 {% for gender in genders %}
                                                 <option value="{{ gender.id }}">{{ gender.title }}</option>
-                                            {% endfor %}
+                                                {% endfor %}
                                             </select>
-                                            <label for="select1">Gender</label>
-                                          </div>
+                                            <label for="select1">Select Gender</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="Role" name="role">
-                                            <option></option>
+                                            <select class="form-select" id="Role" name="role" required>
+                                                <option></option>
                                                 {% for role in roles %}
                                                 <option value="{{ role.id }}">{{ role.title }}</option>
-                                            {% endfor %}
+                                                {% endfor %}
                                             </select>
-                                            <label for="select1">Role</label>
-                                          </div>
+                                            <label for="select1">Select Role</label>
+                                        </div>
                                     </div>
-                                
+
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
-                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+                                            <label for="password1">Password</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
-                                            <label for="password">Confirm Password</label>
+                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+                                            <label for="password2">Confirm Password</label>
                                         </div>
                                     </div>
-                                    {% comment %} <div class="row my-3">
-                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
-                                            <label for="intern" class="me-2">Intern?</label>
-                                            <input type="checkbox" id="intern" name="intern">
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
-                                            <label for="active" class="me-2"></label>
-                                            <input type="hidden" id="active" name="active">
-                                        </div>
-                                    </div> {% endcomment %}
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                                        <button class="btn btn-primary w-100 py-3" id="registerButton" type="submit" style="display: none;">Register</button>
                                     </div>
+                                   
+                                    
                                 </div>
                             </form>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const password_1 = document.getElementById("password1");
+        const password_2 = document.getElementById("password2");
+        const registerButton = document.getElementById("registerButton");
+
+        // Add an event listener to check passwords on input change
+        const checkPasswords = () => {
+            if (password_1.value && password_1.value === password_2.value) {
+                password_1.style.border = "2px solid green";
+                password_2.style.border = "2px solid green";
+                registerButton.style.display = "block"; // Show the button
+            } else {
+                password_1.style.border = "2px solid red";
+                password_2.style.border = "2px solid red";
+                registerButton.style.display = "none"; // Hide the button
+            }
+        };
+
+        password_1.addEventListener("input", checkPasswords);
+        password_2.addEventListener("input", checkPasswords);
+    });
+</script>

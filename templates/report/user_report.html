@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container-xxl pt-2 pb-3">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row g-3">
+            <div class="text-center">
+                <h3 class="section-title text-primary font-monospace">Report</h3>
+            </div>
+            <div class="card shadow  pb-3">
+                
+                <div class="table-responsive">
+                    <p class="text-center text-primary mt-3"><strong>Status:</strong> {{ status|default:"All" }}</p>
+                    <table class="table table-bordered">
+                        <thead class="">
+                            <tr>
+                                <th>S/N</th>
+                                <th >Full Name</th>
+                                <th >Meal Details</th>
+                                <th >Total Price</th>
+                                <th >Status</th>
+                                <th >Request Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if report %}
+                                {% for req in report %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ req.user.firstname }} {{ req.user.lastname }}</td>
+                                    <td>
+                                        <ul>
+                                        {% for detail in req.requestdetails_set.all %}
+                                        <li>{{ detail.meal }}</li>
+                                        {% endfor %} 
+                                    </ul> 
+                                    </td>
+                                    <td>₦{{ req.calculate_total_price }}</td>
+                                    <td>{{ req.status }}</td>
+                                    <td>{{ req.date_created }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center">No requests found for the selected criteria.</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                       
+                    </table>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock content %}

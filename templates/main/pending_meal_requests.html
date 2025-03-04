@@ -24,7 +24,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="request_id" value="{{ request.id }}">
                 <button type="submit" name="action" value="approve" class="btn btn-success btn-sm m-1">Approve</button>
-                <button type="submit" name="action" value="decline" class="btn btn-danger btn-sm m-1">Decline</button>
+                <!-- <button type="submit" name="action" value="decline" class="btn btn-danger btn-sm m-1">Decline</button> -->
               </form>
             </div>
           </div>
@@ -53,6 +53,7 @@
                   
                 {% endfor %}
               </tbody>
+              
             </table>
           </div>
         </div>

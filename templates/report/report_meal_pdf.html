@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Meal Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 3px;
+            text-align: left;
+        }
+        th {
+            padding-top: 5px;
+            background-color: #4CAF50; 
+            color: white;
+            font-size: 13px;
+            text-align: center;
+        }
+        ul,li{
+            margin: 0px;
+            
+        }
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>{{ status|default:"All" }} Meals Report</h3>
+    <p><strong>From:</strong> {{ datefrom }} <br> <strong>To:</strong> {{ dateto }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35px;">ID</th>
+                <th>Full Name</th>
+                <th>Meal Details</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Request Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for req in report %}
+            <tr>
+                <td style="width: 35px;">{{ req.id }}</td>
+                <td >{{ req.user.firstname }} {{ req.user.lastname }}</td>
+                <td>
+                    <ul style="margin: 0; padding: 0; ">
+                        {% for detail in req.requestdetails_set.all %}
+                        <li style="margin: 0; padding: 0;">{{ detail.meal }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>₦{{ req.calculate_total_price }}</td>
+                <td>{{ req.status }}</td>
+                <td style="width: 200px;">{{ req.date_created }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No requests found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total Price </strong></td>
+                <td colspan="3"><strong>₦{{ total_price|floatformat:2 }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

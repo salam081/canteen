@@ -1,17 +1,20 @@
-<div class="container-fluid position-relative p-0">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-3 py-3 py-lg-0">
+<div class="container-fluid position-relative p-0 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-3 py-3 py-lg-0 sticky-top">
         <a href="" class="navbar-brand p-0">
             <h4 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Canteen</h4>
         </a>
-          <a href="" class="mx-5"  data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
-                <i class="bi bi-zoom-in"></i>
-            </a>
+        {% if user.is_authenticated and user.group.title == 'Support' or user.group.title == 'Developer' %}
+        <a href="" class="mx-5" data-bs-toggle="modal" data-bs-target="#search" title="Search Here">
+            <i class="bi bi-zoom-in"></i>
+        </a>
+    {% endif %}
+    
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-2">
-                <a href="" class="nav-item nav-link">Home</a>
+                <a href="/" class="nav-item nav-link">Home</a>
                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                 <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                 
@@ -19,16 +22,30 @@
                  <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Manage Meals</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{% url 'pending_meal_requests' %}" class="dropdown-item" >Pending Meal List</a>
+                        <a href="{% url 'pending_meal_requests' %}" class="dropdown-item" >Pending Meals</a>
                         <a href="{% url 'canteen_manager' %}" class="dropdown-item">Update Meals</a>
+                        <a href="{% url 'report' %}" class="dropdown-item">Report</a>
                        
                     </div>
                 </div>
                 {%endif%}
 
-                {% if user.is_authenticated and user.group.title == 'Admin Officer'%}
-                <a href="{% url 'admin_page' %}" class="nav-item nav-link">Admin Page</a>
+                {% if user.is_authenticated and user.group.title == 'Developer' or user.group.title == 'Support'%}
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Manage Meals</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="{% url 'canteen_manager' %}" class="dropdown-item">Update Meals</a>
+                        <a href="{% url 'admin_page' %}" class="dropdown-item" >Manage Roster</a>
+                       
+                    </div>
+                </div>
                 {%endif%}
+
+                {% if user.is_authenticated and user.group.title == 'Admin Officer' %}
+                <a href="{% url 'admin_page' %}" class="nav-item nav-link">Manage Roster</a>
+                {%endif%}
+               
+                
 
                {% if user.is_authenticated and user.group.title == 'User'%}
                 <div class="nav-item dropdown">
@@ -37,6 +54,7 @@
                         <a href="{% url 'user_roster' %}" class="dropdown-item">My Roster</a>
                         <a href="{% url 'meal_request' %}" class="dropdown-item" >Request Meal</a>
                         <a href="{% url 'meal_request_details' %}" class="dropdown-item" >My Request Details</a>
+                        <a href="{% url 'user_report_details' %}" class="dropdown-item" >Meals History</a>
                     </div>
                 </div>
                 {%endif%}

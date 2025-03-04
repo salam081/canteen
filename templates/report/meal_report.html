@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container-xxl pt-2 pb-3">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row g-3">
+            <div class="text-center">
+                <h3 class="section-title text-primary font-monospace">Report</h3>
+            </div>
+            <form method="GET" action="{% url 'report' %}" class="mt-2 mb-3">
+                <div class="row g-3">
+                    <div class="col-md-4 col-sm-6">
+                        <label for="datefrom">Date From</label>
+                        <input class="form-control" type="date" name="datefrom">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label for="dateto">Date To</label>
+                        <input class="form-control" type="date" name="dateto">
+                    </div>
+                   
+                    <div class="col-md-4 col-sm-6">
+                        <label>Select Status</label>
+                        <select class="form-select" name="status">
+                            <option value="" {% if not status %}selected{% endif %}>All</option>
+                            <option value="Pending" {% if status == "Pending" %}selected{% endif %}>Pending</option>
+                            <option value="Approved" {% if status == "Approved" %}selected{% endif %}>Approved</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <button type="submit" class="btn btn-success mt-2 justify-content-center">Search</button>
+            </form>
+            <div class="card shadow  pb-3">
+                {% if report %}
+                <div class="table-responsive">
+                    <h6 class="text-end mt-3 me-3">
+                        <a
+                            href="{% url 'meal_report_pdf' %}?datefrom={{ datefrom }}&dateto={{ dateto }}&status={{ status }}"><i
+                                class="bi bi-file-earmark-arrow-down-fill"></i>Download</a>
+                    </h6>
+                    <p class="text-center"><strong>Status:</strong> {{ status|default:"All" }}</p>
+                    <table class="table table-bordered">
+                        <thead class="">
+                            <tr>
+                                <th>S/N</th>
+                                <th>FullName</th>
+                                <th>MealDetails</th>
+                                <th>TotalPrice</th>
+                                <th>Status</th>
+                                <th>RequestDate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for req in report %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ req.user.firstname }} {{ req.user.lastname }}</td>
+                                <td>
+                                    <ul>
+                                        {% for detail in req.requestdetails_set.all %}
+                                        <li>{{ detail.meal }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>₦{{ req.calculate_total_price }}</td>
+                                <td>{{ req.status }}</td>
+                                <td>{{ req.date_created }}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td colspan="2"><strong>Total Price </strong></td>
+                                <td><strong>₦{{ total_price|floatformat:2 }}</strong></td>
+                                <td colspan="2">
+
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                {% else %}
+                <p colspan="6" class="text-center">No requests found for the selected criteria.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
